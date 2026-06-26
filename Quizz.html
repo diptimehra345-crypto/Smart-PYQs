@@ -1,0 +1,3512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart PYQ Quiz Generator</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI', Arial, sans-serif;
+}
+
+body{
+    background:#f4f6f9;
+}
+
+:root{
+    --grad: linear-gradient(135deg, #7b2ff7 0%, #4a6cf7 50%, #21d4fd 100%);
+}
+
+header{
+    background:#007bff;
+    color:white;
+    text-align:center;
+    padding:30px;
+}
+
+header h1{
+    margin-bottom:10px;
+}
+
+/* ============== LANDING PAGE ============== */
+.landing{
+    background:#0d0d12;
+    color:#fff;
+    min-height:100vh;
+    padding-bottom:60px;
+}
+
+.landing-nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 40px;
+}
+
+.landing-logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:bold;
+    font-size:18px;
+}
+
+.landing-logo .logo-circle{
+    width:34px;
+    height:34px;
+    border-radius:50%;
+    background:var(--grad);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:16px;
+}
+
+.landing-nav-links{
+    display:flex;
+    gap:25px;
+    font-size:14px;
+    color:#cfcfd6;
+}
+
+.landing-nav-links span{
+    cursor:default;
+}
+
+.landing-cta{
+    background:var(--grad);
+    color:white;
+    border:none;
+    padding:10px 22px;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.landing-hero{
+    text-align:center;
+    padding:60px 20px 30px;
+}
+
+.landing-hero h1{
+    font-size:42px;
+    line-height:1.3;
+    max-width:700px;
+    margin:0 auto 20px;
+}
+
+.landing-hero h1 span{
+    background:var(--grad);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+}
+
+.landing-hero p{
+    color:#a8a8b3;
+    max-width:600px;
+    margin:0 auto 30px;
+    font-size:15px;
+    line-height:1.6;
+}
+
+.landing-hero-buttons{
+    display:flex;
+    gap:15px;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+.btn-primary{
+    background:var(--grad);
+    color:white;
+    border:none;
+    padding:14px 28px;
+    border-radius:10px;
+    font-weight:bold;
+    cursor:pointer;
+    font-size:15px;
+}
+
+.btn-secondary{
+    background:#1c1c24;
+    color:#fff;
+    border:1px solid #333;
+    padding:14px 28px;
+    border-radius:10px;
+    font-weight:bold;
+    cursor:pointer;
+    font-size:15px;
+}
+
+.landing-stats{
+    max-width:800px;
+    margin:50px auto 0;
+    background:var(--grad);
+    border-radius:16px;
+    padding:30px 20px;
+    display:flex;
+    justify-content:space-around;
+    flex-wrap:wrap;
+    gap:20px;
+    text-align:center;
+}
+
+.landing-stats .stat-num{
+    font-size:26px;
+    font-weight:bold;
+}
+
+.landing-stats .stat-label{
+    font-size:13px;
+    opacity:0.85;
+    margin-top:5px;
+}
+
+.landing-features{
+    max-width:900px;
+    margin:60px auto 0;
+    text-align:center;
+    padding:0 20px;
+}
+
+.landing-features h2{
+    font-size:26px;
+    margin-bottom:10px;
+}
+
+.landing-features > p{
+    color:#a8a8b3;
+    margin-bottom:30px;
+    font-size:14px;
+}
+
+.feature-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(180px,1fr));
+    gap:20px;
+}
+
+.feature-card{
+    background:#16161d;
+    border:1px solid #26262f;
+    border-radius:14px;
+    padding:25px 18px;
+    text-align:left;
+}
+
+.feature-icon{
+    width:38px;
+    height:38px;
+    border-radius:10px;
+    background:var(--grad);
+    margin-bottom:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:18px;
+}
+
+.feature-card h3{
+    font-size:15px;
+    margin-bottom:8px;
+}
+
+.feature-card p{
+    font-size:13px;
+    color:#a8a8b3;
+    line-height:1.5;
+}
+
+/* ============== AUTH PAGE (new style) ============== */
+.auth-wrapper{
+    min-height:100vh;
+    background:#f3f4fb;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:30px;
+}
+
+.auth-card{
+    background:#fff;
+    border-radius:20px;
+    box-shadow:0 10px 40px rgba(80,60,200,0.12);
+    padding:40px;
+    width:100%;
+    max-width:380px;
+}
+
+.auth-logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:25px;
+}
+
+.auth-logo .logo-circle{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:var(--grad);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    font-size:18px;
+    font-weight:bold;
+}
+
+.auth-logo span{
+    font-weight:bold;
+    font-size:17px;
+    color:#222;
+}
+
+.auth-card h2{
+    font-size:26px;
+    margin-bottom:6px;
+    color:#1a1a1a;
+}
+
+.auth-card .auth-sub{
+    color:#8a8a99;
+    font-size:14px;
+    margin-bottom:25px;
+}
+
+.auth-field-label{
+    font-size:13px;
+    font-weight:bold;
+    color:#444;
+    margin-bottom:6px;
+    display:block;
+}
+
+.auth-input-wrap{
+    position:relative;
+    margin-bottom:18px;
+}
+
+.auth-input-wrap i{
+    position:absolute;
+    left:14px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#9a9aa8;
+    font-style:normal;
+}
+
+.auth-input-wrap input{
+    width:100%;
+    padding:12px 14px 12px 40px;
+    border:1px solid #e1e1ea;
+    border-radius:10px;
+    font-size:14px;
+    background:#fafafe;
+    margin:0;
+}
+
+.auth-input-wrap input:focus{
+    outline:none;
+    border-color:#7b6ef7;
+}
+
+.auth-extra-row{
+    display:flex;
+    justify-content:flex-end;
+    margin:-10px 0 18px;
+}
+
+.auth-extra-row a{
+    font-size:13px;
+    color:#5b5bf5;
+    text-decoration:none;
+}
+
+.auth-submit{
+    width:100%;
+    background:var(--grad);
+    color:#fff;
+    border:none;
+    padding:14px;
+    border-radius:10px;
+    font-weight:bold;
+    font-size:15px;
+    cursor:pointer;
+    margin-bottom:18px;
+}
+
+.auth-switch{
+    text-align:center;
+    font-size:14px;
+    color:#666;
+}
+
+.auth-switch a{
+    color:#5b5bf5;
+    font-weight:bold;
+    text-decoration:none;
+    cursor:pointer;
+}
+
+/* ============== DASHBOARD THEME ============== */
+.app-shell{
+    background:#f7f7fb;
+    min-height:100vh;
+    padding-bottom:40px;
+}
+
+.app-topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 30px;
+    background:#fff;
+    border-bottom:1px solid #ececf3;
+}
+
+.app-topbar .topbar-logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:bold;
+    font-size:16px;
+    color:#222;
+}
+
+.app-topbar .topbar-logo .logo-circle{
+    width:32px;
+    height:32px;
+    border-radius:50%;
+    background:var(--grad);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:15px;
+}
+
+.app-topbar button{
+    background:#d9534f;
+    border-radius:8px;
+}
+
+.dash-hero{
+    background:var(--grad);
+    border-radius:18px;
+    margin:25px auto 0;
+    width:88%;
+    padding:30px 35px;
+    color:#fff;
+}
+
+.dash-hero .dash-date{
+    font-size:13px;
+    opacity:0.85;
+    margin-bottom:8px;
+}
+
+.dash-hero h1{
+    font-size:30px;
+    margin-bottom:10px;
+}
+
+.dash-hero p{
+    font-size:14px;
+    opacity:0.9;
+    margin-bottom:20px;
+    max-width:500px;
+}
+
+.dash-hero .dash-resume{
+    background:#fff;
+    color:#5b3df5;
+    border:none;
+    padding:12px 22px;
+    border-radius:10px;
+    font-weight:bold;
+    cursor:pointer;
+    font-size:14px;
+}
+
+.dash-stats{
+    width:88%;
+    margin:25px auto 0;
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
+    gap:18px;
+}
+
+.dash-stat-card{
+    background:#fff;
+    border-radius:14px;
+    border:1px solid #ececf3;
+    padding:20px;
+}
+
+.dash-stat-card .dash-stat-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+}
+
+.dash-stat-card .dash-stat-label{
+    font-size:12px;
+    color:#9a9aa8;
+    letter-spacing:0.5px;
+    text-transform:uppercase;
+}
+
+.dash-stat-card .dash-stat-icon{
+    width:34px;
+    height:34px;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:16px;
+}
+
+.dash-stat-card .dash-stat-value{
+    font-size:28px;
+    font-weight:bold;
+    margin:10px 0 4px;
+    color:#1a1a1a;
+}
+
+.dash-stat-card .dash-stat-trend{
+    font-size:13px;
+    color:#28a745;
+}
+
+.icon-purple{ background:#ece9fe; color:#7b6ef7; }
+.icon-pink{ background:#fbe9f4; color:#d6549a; }
+.icon-green{ background:#e6f7ec; color:#28a745; }
+.icon-blue{ background:#e3f5fa; color:#21b6cf; }
+
+.dash-section{
+    width:88%;
+    margin:30px auto 0;
+}
+
+.dash-section-card{
+    background:#fff;
+    border-radius:14px;
+    border:1px solid #ececf3;
+    padding:22px;
+}
+
+.dash-section-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:10px;
+}
+
+.dash-section-header h2{
+    font-size:18px;
+    color:#1a1a1a;
+}
+
+.dash-section-header span{
+    font-size:13px;
+    color:#5b5bf5;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+/* ============== THEME TOGGLE ============== */
+.theme-toggle{
+    background:#1c1c24;
+    color:#fff;
+    border:1px solid #333;
+    padding:8px 14px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.app-topbar .theme-toggle{
+    background:#f0f0f5;
+    color:#333;
+    border:1px solid #e1e1ea;
+}
+
+/* ============== DARK MODE ============== */
+body.dark-theme{
+    background:#0d0d12;
+    color:#e8e8ee;
+}
+
+body.dark-theme .container,
+body.dark-theme .auth-card,
+body.dark-theme .dash-stat-card,
+body.dark-theme .dash-section-card,
+body.dark-theme .feature-card{
+    background:#16161d;
+    border-color:#26262f;
+    color:#e8e8ee;
+}
+
+body.dark-theme .app-shell{
+    background:#0d0d12;
+}
+
+body.dark-theme .app-topbar{
+    background:#16161d;
+    border-color:#26262f;
+}
+
+body.dark-theme .app-topbar .topbar-logo{
+    color:#e8e8ee;
+}
+
+body.dark-theme .app-topbar .theme-toggle{
+    background:#26262f;
+    color:#e8e8ee;
+    border-color:#333;
+}
+
+body.dark-theme .auth-wrapper{
+    background:#0d0d12;
+}
+
+body.dark-theme .auth-card h2,
+body.dark-theme .auth-logo span{
+    color:#e8e8ee;
+}
+
+body.dark-theme .auth-input-wrap input{
+    background:#1c1c24;
+    border-color:#333;
+    color:#e8e8ee;
+}
+
+body.dark-theme .container h2,
+body.dark-theme .dash-stat-value,
+body.dark-theme .dash-section-header h2{
+    color:#e8e8ee;
+}
+
+body.dark-theme input,
+body.dark-theme select{
+    background:#1c1c24;
+    border-color:#333;
+    color:#e8e8ee;
+}
+
+body.dark-theme .dash-stat-card .dash-stat-label,
+body.dark-theme .auth-sub,
+body.dark-theme .dash-stat-trend{
+    color:#9a9aa8;
+}
+
+body.dark-theme #activityList li{
+    border-color:#26262f !important;
+    color:#cfcfd6;
+}
+
+body.dark-theme #explanationBox{
+    color:#e8e8ee;
+}
+
+/* ===== Landing page LIGHT mode overrides (default dark; light when body.light-theme) ===== */
+body:not(.dark-theme) .landing{
+    background:#f7f7fb;
+    color:#1a1a25;
+}
+body:not(.dark-theme) .landing-nav-links{ color:#4a4a55; }
+body:not(.dark-theme) .landing-hero p,
+body:not(.dark-theme) .landing-features > p{ color:#55555f; }
+body:not(.dark-theme) .feature-card{
+    background:#ffffff;
+    border-color:#e5e5ec;
+    color:#1a1a25;
+}
+body:not(.dark-theme) .btn-secondary{
+    background:#ffffff;
+    color:#1a1a25;
+    border:1px solid #d8d8e0;
+}
+
+
+.container{
+    background:white;
+    margin:20px auto;
+    width:80%;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+
+.container h2{
+    margin-bottom:15px;
+}
+
+input,
+select{
+    padding:10px;
+    margin:10px 0;
+    width:100%;
+    border:1px solid #ccc;
+    border-radius:6px;
+}
+
+button{
+    background:#007bff;
+    color:white;
+    border:none;
+    padding:12px 20px;
+    cursor:pointer;
+    border-radius:8px;
+}
+
+button:hover{
+    background:#0056b3;
+}
+
+.hidden{
+    display:none !important;
+}
+
+/* SUBJECT SELECTION */
+.subject-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(150px,1fr));
+    gap:15px;
+    margin-top:15px;
+}
+
+.subject-card{
+    background:#eef4ff;
+    border:2px solid transparent;
+    border-radius:10px;
+    padding:25px 10px;
+    text-align:center;
+    cursor:pointer;
+    font-weight:bold;
+    color:#0056b3;
+    transition:0.2s;
+}
+
+.subject-card:hover{
+    border-color:#007bff;
+}
+
+.subject-card.selected{
+    background:#007bff;
+    color:white;
+}
+
+.welcome-bar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    width:80%;
+    margin:10px auto 0;
+}
+
+.welcome-bar span{
+    font-weight:bold;
+}
+
+.welcome-bar button{
+    background:#d9534f;
+}
+
+.welcome-bar button:hover{
+    background:#b52d2a;
+}
+
+/* QUIZ */
+.question-card{
+    margin-top:20px;
+}
+
+.options{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    margin-top:15px;
+}
+
+.option{
+    text-align:left;
+}
+
+.option.correct{
+    background:#28a745;
+}
+
+.option.wrong{
+    background:#dc3545;
+}
+
+.next-btn{
+    margin-top:20px;
+}
+
+.stats{
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.card{
+    flex:1;
+    min-width:200px;
+    background:#eef4ff;
+    padding:20px;
+    text-align:center;
+    border-radius:10px;
+}
+
+.weak-topics ul{
+    margin-top:10px;
+    padding-left:20px;
+}
+
+.weak-topics li{
+    margin-bottom:10px;
+}
+
+.progress-text{
+    margin-top:10px;
+    font-size:14px;
+    color:#555;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= LANDING PAGE ================= -->
+<section id="landingPage" class="landing">
+
+    <nav class="landing-nav">
+        <div class="landing-logo">
+            <div class="logo-circle">🧠</div>
+            Smart PYQ
+        </div>
+        <div class="landing-nav-links">
+            <span onclick="document.getElementById('featuresInfo').scrollIntoView({behavior:'smooth'})" style="cursor:pointer;">Features</span>
+            <span onclick="document.getElementById('howItWorksInfo').scrollIntoView({behavior:'smooth'})" style="cursor:pointer;">How it works</span>
+            <span onclick="document.getElementById('analyticsInfo').scrollIntoView({behavior:'smooth'})" style="cursor:pointer;">Analytics</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px;">
+            <button class="theme-toggle" onclick="toggleTheme()" id="themeToggleLanding">🌙 Dark</button>
+            <button class="landing-cta" onclick="showAuth('login')">Get Started</button>
+        </div>
+    </nav>
+
+    <div class="landing-hero">
+        <h1>Transform <span>PYQs</span> into Smart Quizzes</h1>
+        <p>
+            Upload previous year question papers, let our AI extract topics,
+            generate MCQs, and deliver personalized analytics — so you study
+            smarter, not harder.
+        </p>
+
+        <div class="landing-hero-buttons">
+            <button class="btn-primary" onclick="showAuth('signup')">Free Trial</button>
+        </div>
+
+        <div class="landing-stats">
+            <div>
+                <div class="stat-num">12,400+</div>
+                <div class="stat-label">Papers analyzed</div>
+            </div>
+            <div>
+                <div class="stat-num">98,200+</div>
+                <div class="stat-label">Quizzes generated</div>
+            </div>
+            <div>
+                <div class="stat-num">+24%</div>
+                <div class="stat-label">Avg. score improvement</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="landing-features" id="featuresInfo">
+        <h2>Everything you need to ace exams</h2>
+        <p>A complete pipeline from raw question papers to mastery</p>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📄</div>
+                <h3>Upload PYQs</h3>
+                <p>Drop in PDF question papers for any subject and let the system read them instantly.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>AI-Generated Quizzes</h3>
+                <p>Get fresh MCQs based on real exam patterns, tuned to your difficulty level.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Performance Analytics</h3>
+                <p>Track score, accuracy and time taken after every quiz attempt.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>Weak Topic Insights</h3>
+                <p>Automatically discover the topics you need to revise most.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="landing-features" id="howItWorksInfo">
+        <h2>How it works</h2>
+        <p>Three simple steps to a personalized quiz</p>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">1️⃣</div>
+                <h3>Sign up & pick a subject</h3>
+                <p>Create your free account and choose from subjects like DBMS, OS, DAA, Java, and more.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">2️⃣</div>
+                <h3>Upload your PYQ paper</h3>
+                <p>Upload a previous year question paper as a PDF and set your difficulty and question count (up to 50).</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">3️⃣</div>
+                <h3>Take the quiz & learn</h3>
+                <p>Answer AI-generated MCQs and get instant explanations for the correct option after every question.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="landing-features" id="analyticsInfo">
+        <h2>Analytics that help you improve</h2>
+        <p>Every attempt feeds your personal dashboard</p>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📈</div>
+                <h3>Score & accuracy</h3>
+                <p>See your score, accuracy percentage, and time taken right after finishing a quiz.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🧭</div>
+                <h3>Weak topic tracking</h3>
+                <p>Topics where you answered incorrectly are highlighted so you know exactly what to revise.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🕒</div>
+                <h3>Recent activity</h3>
+                <p>Your dashboard keeps a running log of uploads and quiz attempts with their scores.</p>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<!-- ================= AUTH PAGE ================= -->
+<section id="loginPage" class="auth-wrapper hidden">
+    <div class="auth-card">
+
+        <div class="auth-logo">
+            <div class="logo-circle">🧠</div>
+            <span>Smart PYQ</span>
+        </div>
+
+        <h2 id="formTitle">Welcome back</h2>
+        <p class="auth-sub" id="formSub">Sign in to continue your study streak.</p>
+
+        
+<div id="signupFields" class="hidden">
+
+<label class="auth-field-label">First Name</label>
+<div class="auth-input-wrap"><input type="text" id="firstName"></div>
+
+<label class="auth-field-label">Last Name</label>
+<div class="auth-input-wrap"><input type="text" id="lastName"></div>
+
+<label class="auth-field-label">Phone Number</label>
+<div class="auth-input-wrap"><input type="tel" id="phone"></div>
+
+<label class="auth-field-label">Email</label>
+<div class="auth-input-wrap"><input type="email" id="email"></div>
+
+<label class="auth-field-label">Create Password</label>
+<div class="auth-input-wrap"><input type="password" id="signupPassword"></div>
+
+</div>
+
+<label class="auth-field-label">Username</label>
+        <div class="auth-input-wrap">
+            <i>👤</i>
+            <input type="text" id="username" placeholder="you@school.edu">
+        </div>
+
+        <label class="auth-field-label">Password</label>
+        <div class="auth-input-wrap">
+            <i>🔒</i>
+            <input type="password" id="password" placeholder="••••••••">
+        </div>
+
+        <div class="auth-extra-row">
+            <a href="#" onclick="return false;">Forgot?</a>
+        </div>
+
+        <div class="error-msg" id="loginError" style="margin:-10px 0 12px; font-size:13px; color:#d9534f; min-height:16px;"></div>
+
+        <button class="auth-submit" onclick="handleAuth()" id="authBtn">Sign in</button>
+<button class="auth-submit" style="background:#6c757d;" onclick="resetAuthForm()">Reset</button>
+
+        <div class="auth-switch" id="switchLink" onclick="toggleAuthMode()">
+            New here? <a>Create an account</a>
+        </div>
+    </div>
+</section>
+
+<!-- ================= MAIN APP ================= -->
+<section id="mainApp" class="hidden app-shell">
+
+    <div class="app-topbar">
+        <div class="topbar-logo">
+            <div class="logo-circle">🧠</div>
+            Smart PYQ
+        </div>
+        <div style="display:flex; align-items:center; gap:10px;">
+            <button class="theme-toggle" onclick="toggleTheme()" id="themeToggleApp">🌙 Dark</button>
+            <button onclick="logout()">Logout</button>
+        </div>
+    </div>
+
+    <div class="dash-hero">
+        <div class="dash-date" id="dashDate"></div>
+        <h1>Hey <span id="welcomeName">Student</span> 👋</h1>
+        <p>You're on a 7-day streak. Crush 1 more quiz today to keep it alive.</p>
+        <button class="dash-resume" onclick="document.getElementById('setupSection').scrollIntoView({behavior:'smooth'})">▶ Resume practice</button>
+    </div>
+
+    <div class="dash-stats">
+        <div class="dash-stat-card">
+            <div class="dash-stat-top">
+                <div class="dash-stat-label">Quizzes attempted</div>
+                <div class="dash-stat-icon icon-purple">📖</div>
+            </div>
+            <div class="dash-stat-value" id="statAttempted">0</div>
+            <div class="dash-stat-trend">+0 this week</div>
+        </div>
+
+        <div class="dash-stat-card">
+            <div class="dash-stat-top">
+                <div class="dash-stat-label">Average score</div>
+                <div class="dash-stat-icon icon-pink">🎯</div>
+            </div>
+            <div class="dash-stat-value" id="statAvgScore">0%</div>
+            <div class="dash-stat-trend">vs last week</div>
+        </div>
+
+        <div class="dash-stat-card">
+            <div class="dash-stat-top">
+                <div class="dash-stat-label">Accuracy</div>
+                <div class="dash-stat-icon icon-green">📈</div>
+            </div>
+            <div class="dash-stat-value" id="statAccuracy">0%</div>
+            <div class="dash-stat-trend">trending</div>
+        </div>
+
+        <div class="dash-stat-card">
+            <div class="dash-stat-top">
+                <div class="dash-stat-label">Papers uploaded</div>
+                <div class="dash-stat-icon icon-blue">📄</div>
+            </div>
+            <div class="dash-stat-value" id="statPapers">0</div>
+            <div class="dash-stat-trend">&nbsp;</div>
+        </div>
+    </div>
+
+    <div class="dash-section">
+        <div class="dash-section-card">
+            <div class="dash-section-header">
+                <h2>Recent activity</h2>
+                <span>View all</span>
+            </div>
+            <ul id="activityList" style="list-style:none; font-size:14px; color:#555;">
+                <li style="padding:10px 0; border-bottom:1px solid #f0f0f5; color:#9a9aa8;">No activity yet — generate your first quiz below!</li>
+            </ul>
+        </div>
+    </div>
+
+
+    <!-- SUBJECT + UPLOAD SECTION -->
+    <section class="container" id="setupSection">
+        <h2>1. Select Subject</h2>
+
+        <select id="subjectSelect">
+            <option value="">-- Choose a subject --</option>
+            <option value="MATHS">MATHS</option>
+            <option value="DBMS">DBMS</option>
+            <option value="DAA">DAA</option>
+            <option value="OS">OS</option>
+            <option value="DS">Data Structures</option>
+            <option value="CRYPTO">Cryptography</option>
+            <option value="OOPS_CPP">OOPs (C++)</option>
+            <option value="JAVA">Java</option>
+        </select>
+
+        <h2 style="margin-top:25px;">2. Upload Question Paper</h2>
+
+        <input type="file" id="pdfUpload" accept=".pdf">
+
+        <select id="difficulty">
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+        </select>
+
+        <h2 style="margin-top:25px;">3. Number of Questions (max 50)</h2>
+
+        <input type="number" id="numQuestions" min="1" max="50" value="5">
+        <div class="progress-text" id="numQMsg" style="margin-top:-5px;"></div>
+
+        <button onclick="generateQuiz()">Generate Quiz</button>
+        <div class="progress-text" id="setupMsg"></div>
+    </section>
+
+    <!-- QUIZ SECTION -->
+    <section class="container hidden" id="quizSection">
+        <h2>Quiz - <span id="quizSubject"></span></h2>
+        <div class="progress-text" id="quizProgress"></div>
+
+        <div class="question-card">
+            <p id="questionText">
+                Question will appear here
+            </p>
+
+            <div class="options" id="optionsContainer">
+                <button class="option">Option A</button>
+                <button class="option">Option B</button>
+                <button class="option">Option C</button>
+                <button class="option">Option D</button>
+            </div>
+
+            <div id="explanationBox" class="hidden" style="margin-top:15px; padding:12px 15px; background:#eef4ff; border-left:4px solid #007bff; border-radius:6px; font-size:14px; color:#333;"></div>
+        </div>
+
+        <button class="next-btn" id="nextBtn" onclick="nextQuestion()">Next Question</button>
+    </section>
+
+    <!-- RESULTS SECTION -->
+    <section class="container hidden" id="resultSection">
+        <h2>Performance Analytics</h2>
+
+        <div class="stats">
+            <div class="card">
+                <h3>Score</h3>
+                <p id="score">0/0</p>
+            </div>
+
+            <div class="card">
+                <h3>Accuracy</h3>
+                <p id="accuracy">0%</p>
+            </div>
+
+            <div class="card">
+                <h3>Time Taken</h3>
+                <p id="time">0 sec</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- WEAK TOPICS -->
+    <section class="container weak-topics hidden" id="weakSection">
+        <h2>Weak Topics Recommendation</h2>
+        <ul id="weakList"></ul>
+        <button style="margin-top:15px;" onclick="backToSetup()">Take Another Quiz</button>
+    </section>
+
+</section>
+
+<script>
+
+/* ============================================================
+   AUTHENTICATION (stored in-memory only, simple demo system)
+   ============================================================ */
+
+function toggleTheme(){
+    const isDark = document.body.classList.toggle("dark-theme");
+    const label = isDark ? "☀️ Light" : "🌙 Dark";
+    const a = document.getElementById("themeToggleLanding");
+    const b = document.getElementById("themeToggleApp");
+    if(a) a.innerText = label;
+    if(b) b.innerText = label;
+    try { localStorage.setItem("spyq_theme", isDark ? "dark" : "light"); } catch(e){}
+}
+
+function applySavedTheme(){
+    let saved = "light";
+    try { saved = localStorage.getItem("spyq_theme") || "light"; } catch(e){}
+    if(saved === "dark") document.body.classList.add("dark-theme");
+    const label = saved === "dark" ? "☀️ Light" : "🌙 Dark";
+    const a = document.getElementById("themeToggleLanding");
+    const b = document.getElementById("themeToggleApp");
+    if(a) a.innerText = label;
+    if(b) b.innerText = label;
+}
+
+/* ===== Persistent "backend" via localStorage ===== */
+const LS_USERS = "spyq_users";
+const LS_CURRENT = "spyq_current_user";
+
+function loadUsers(){
+    try { return JSON.parse(localStorage.getItem(LS_USERS) || "{}"); } catch(e){ return {}; }
+}
+function saveUsers(u){
+    try { localStorage.setItem(LS_USERS, JSON.stringify(u)); } catch(e){}
+}
+function saveCurrentUser(name){
+    try {
+        if(name) localStorage.setItem(LS_CURRENT, name);
+        else localStorage.removeItem(LS_CURRENT);
+    } catch(e){}
+}
+function loadUserData(name){
+    try {
+        const raw = localStorage.getItem("spyq_data_" + name);
+        if(raw) return JSON.parse(raw);
+    } catch(e){}
+    return { stats: { attempted:0, totalScorePct:0, totalAccuracyPct:0, papers:0 }, activity: [] };
+}
+function saveUserData(){
+    if(!currentUser) return;
+    try {
+        localStorage.setItem("spyq_data_" + currentUser, JSON.stringify({ stats, activity }));
+    } catch(e){}
+}
+
+let users = loadUsers();
+
+let currentUser = null;
+let isLoginMode = true;
+
+function showAuth(mode){
+    document.getElementById("landingPage").classList.add("hidden");
+    document.getElementById("loginPage").classList.remove("hidden");
+    isLoginMode = (mode === "login");
+    updateAuthTexts();
+    document.getElementById("loginError").innerText = "";
+}
+
+function updateAuthTexts(){
+    document.getElementById("formTitle").innerText = isLoginMode ? "Welcome back" : "Create account";
+    document.getElementById("formSub").innerText = isLoginMode
+        ? "Sign in to continue your study streak."
+        : "Sign up to start your study streak.";
+    document.getElementById("authBtn").innerText = isLoginMode ? "Sign in" : "Sign up";
+    document.getElementById("switchLink").innerHTML = isLoginMode
+        ? "New here? <a>Create an account</a>"
+        : "Already have an account? <a>Sign in</a>";
+    const sf=document.getElementById("signupFields");
+    if(sf) sf.classList.toggle("hidden", isLoginMode);
+}
+
+function toggleAuthMode(){
+    isLoginMode = !isLoginMode;
+    updateAuthTexts();
+    document.getElementById("loginError").innerText = "";
+}
+
+function resetAuthForm(){
+    ["username","password","firstName","lastName","phone","email","signupPassword"].forEach(id=>{
+        const el=document.getElementById(id);
+        if(el) el.value="";
+    });
+    document.getElementById("loginError").innerText="";
+}
+
+function handleAuth(){
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const errorBox = document.getElementById("loginError");
+
+    if(!username || !password){
+        errorBox.innerText = "Please enter username and password.";
+        return;
+    }
+
+    if(isLoginMode){
+        if(users[username] && users[username].password === password){
+            errorBox.innerText = "";
+            currentUser = username;
+            saveCurrentUser(currentUser);
+            const d = loadUserData(currentUser);
+            stats = d.stats; activity = d.activity;
+            showMainApp();
+            refreshDashboard();
+        } else {
+            errorBox.innerText = "Invalid username or password.";
+        }
+    } else {
+        if(users[username]){
+            errorBox.innerText = "Username already exists.";
+        } else {
+            users[username] = {
+                password: password,
+                firstName: (document.getElementById("firstName")||{}).value || "",
+                lastName:  (document.getElementById("lastName")||{}).value  || "",
+                email:     (document.getElementById("email")||{}).value     || "",
+                phone:     (document.getElementById("phone")||{}).value     || "",
+                createdAt: new Date().toISOString()
+            };
+            saveUsers(users);
+            errorBox.innerText = "";
+            currentUser = username;
+            saveCurrentUser(currentUser);
+            stats = { attempted:0, totalScorePct:0, totalAccuracyPct:0, papers:0 };
+            activity = [];
+            saveUserData();
+            showMainApp();
+            refreshDashboard();
+        }
+    }
+}
+
+let stats = { attempted: 0, totalScorePct: 0, totalAccuracyPct: 0, papers: 0 };
+let activity = [];
+
+
+function showMainApp(){
+    document.getElementById("loginPage").classList.add("hidden");
+    document.getElementById("landingPage").classList.add("hidden");
+    document.getElementById("mainApp").classList.remove("hidden");
+    document.getElementById("welcomeName").innerText = currentUser;
+
+    const dateStr = new Date().toLocaleDateString('en-US', { weekday:'long', month:'long', day:'numeric', year:'numeric' });
+    document.getElementById("dashDate").innerText = dateStr;
+
+    document.getElementById("username").value = "";
+    document.getElementById("password").value = "";
+}
+
+function refreshDashboard(){
+    document.getElementById("statAttempted").innerText = stats.attempted;
+    document.getElementById("statAvgScore").innerText =
+        stats.attempted ? Math.round(stats.totalScorePct / stats.attempted) + "%" : "0%";
+    document.getElementById("statAccuracy").innerText =
+        stats.attempted ? Math.round(stats.totalAccuracyPct / stats.attempted) + "%" : "0%";
+    document.getElementById("statPapers").innerText = stats.papers;
+
+    const list = document.getElementById("activityList");
+    list.innerHTML = "";
+
+    if(activity.length === 0){
+        list.innerHTML = '<li style="padding:10px 0; border-bottom:1px solid #f0f0f5; color:#9a9aa8;">No activity yet — generate your first quiz below!</li>';
+        return;
+    }
+
+    activity.slice().reverse().forEach(item => {
+        const li = document.createElement("li");
+        li.style.cssText = "display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid #f0f0f5;";
+        li.innerHTML = '<div><strong>' + item.title + '</strong><div style="font-size:12px; color:#9a9aa8;">' + item.time + '</div></div>' +
+            (item.badge ? '<span style="background:#e6f7ec; color:#28a745; padding:4px 10px; border-radius:20px; font-size:12px; font-weight:bold;">' + item.badge + '</span>' : '');
+        list.appendChild(li);
+    });
+}
+
+function logout(){
+    saveUserData();
+    currentUser = null;
+    saveCurrentUser(null);
+    document.getElementById("mainApp").classList.add("hidden");
+    document.getElementById("loginPage").classList.add("hidden");
+    document.getElementById("landingPage").classList.remove("hidden");
+    isLoginMode = true;
+    resetQuizUI();
+}
+
+/* Auto-restore session + theme on load */
+window.addEventListener("DOMContentLoaded", function(){
+    applySavedTheme();
+    let saved = null;
+    try { saved = localStorage.getItem(LS_CURRENT); } catch(e){}
+    if(saved && users[saved]){
+        currentUser = saved;
+        const d = loadUserData(currentUser);
+        stats = d.stats; activity = d.activity;
+        showMainApp();
+        refreshDashboard();
+    }
+});
+
+
+/* ============================================================
+   SUBJECT SELECTION
+   ============================================================ */
+
+function getSelectedSubject(){
+    return document.getElementById("subjectSelect").value;
+}
+
+/* ============================================================
+   QUESTION BANKS PER SUBJECT (sample PYQ-style questions)
+   ============================================================ */
+
+const questionBanks = {
+    MATHS: [
+        {
+            q: "What is 7 + 8?",
+            options: ["13", "14", "15", "16"],
+            answer: "15",
+            explanation: "Basic addition.",
+            topic: "Arithmetic",
+            difficulty: "easy"
+        },
+        {
+            q: "What is the value of pi (to 2 decimals)?",
+            options: ["3.12", "3.14", "3.16", "3.18"],
+            answer: "3.14",
+            explanation: "Pi \u2248 3.14159.",
+            topic: "Arithmetic",
+            difficulty: "easy"
+        },
+        {
+            q: "What is 12 \u00d7 11?",
+            options: ["121", "131", "132", "144"],
+            answer: "132",
+            explanation: "12*11 = 132.",
+            topic: "Arithmetic",
+            difficulty: "easy"
+        },
+        {
+            q: "Square root of 81?",
+            options: ["7", "8", "9", "10"],
+            answer: "9",
+            explanation: "9*9 = 81.",
+            topic: "Arithmetic",
+            difficulty: "easy"
+        },
+        {
+            q: "Which is an even number?",
+            options: ["3", "7", "9", "10"],
+            answer: "10",
+            explanation: "Even numbers are divisible by 2.",
+            topic: "Number Theory",
+            difficulty: "easy"
+        },
+        {
+            q: "What is 15% of 200?",
+            options: ["20", "25", "30", "35"],
+            answer: "30",
+            explanation: "15/100*200=30.",
+            topic: "Percentages",
+            difficulty: "easy"
+        },
+        {
+            q: "Sum of angles in a triangle?",
+            options: ["90\u00b0", "180\u00b0", "270\u00b0", "360\u00b0"],
+            answer: "180\u00b0",
+            explanation: "Always 180\u00b0.",
+            topic: "Geometry",
+            difficulty: "easy"
+        },
+        {
+            q: "What is 9\u00b2?",
+            options: ["72", "81", "91", "99"],
+            answer: "81",
+            explanation: "9*9=81.",
+            topic: "Arithmetic",
+            difficulty: "easy"
+        },
+        {
+            q: "Which fraction is largest?",
+            options: ["1/2", "1/3", "1/4", "1/5"],
+            answer: "1/2",
+            explanation: "Larger denominator \u2192 smaller value.",
+            topic: "Fractions",
+            difficulty: "easy"
+        },
+        {
+            q: "Perimeter of a square with side 5?",
+            options: ["10", "15", "20", "25"],
+            answer: "20",
+            explanation: "4*side.",
+            topic: "Geometry",
+            difficulty: "easy"
+        },
+        {
+            q: "What is the derivative of x^2?",
+            options: ["2x", "x", "x^2", "2"],
+            answer: "2x",
+            explanation: "Power rule.",
+            topic: "Calculus",
+            difficulty: "medium"
+        },
+        {
+            q: "Value of sin(90\u00b0)?",
+            options: ["0", "1", "-1", "0.5"],
+            answer: "1",
+            explanation: "sin(90\u00b0)=1.",
+            topic: "Trigonometry",
+            difficulty: "medium"
+        },
+        {
+            q: "Which is prime?",
+            options: ["21", "29", "33", "39"],
+            answer: "29",
+            explanation: "29 has only 1 and 29 as divisors.",
+            topic: "Number Theory",
+            difficulty: "medium"
+        },
+        {
+            q: "Determinant of a 2x2 identity matrix?",
+            options: ["0", "1", "2", "-1"],
+            answer: "1",
+            explanation: "det(I)=1.",
+            topic: "Linear Algebra",
+            difficulty: "medium"
+        },
+        {
+            q: "Integral of 1/x dx?",
+            options: ["x^2/2", "ln|x|", "1/x^2", "e^x"],
+            answer: "ln|x|",
+            explanation: "Standard integral.",
+            topic: "Calculus",
+            difficulty: "medium"
+        },
+        {
+            q: "Slope of line y=3x+2?",
+            options: ["2", "3", "5", "-3"],
+            answer: "3",
+            explanation: "Coefficient of x.",
+            topic: "Algebra",
+            difficulty: "medium"
+        },
+        {
+            q: "nCr when n=5, r=2?",
+            options: ["5", "10", "15", "20"],
+            answer: "10",
+            explanation: "5!/(2!3!)=10.",
+            topic: "Combinatorics",
+            difficulty: "medium"
+        },
+        {
+            q: "cos(0\u00b0) equals?",
+            options: ["0", "1", "-1", "0.5"],
+            answer: "1",
+            explanation: "cos(0)=1.",
+            topic: "Trigonometry",
+            difficulty: "medium"
+        },
+        {
+            q: "Solve: 2x+3=11.",
+            options: ["3", "4", "5", "6"],
+            answer: "4",
+            explanation: "x=(11-3)/2=4.",
+            topic: "Algebra",
+            difficulty: "medium"
+        },
+        {
+            q: "Area of circle radius 7 (\u03c0=22/7)?",
+            options: ["154", "144", "49", "100"],
+            answer: "154",
+            explanation: "\u03c0r\u00b2=22/7*49=154.",
+            topic: "Geometry",
+            difficulty: "medium"
+        },
+        {
+            q: "\u222b from 0 to \u03c0 of sin(x) dx = ?",
+            options: ["0", "1", "2", "\u03c0"],
+            answer: "2",
+            explanation: "[-cos x] from 0 to \u03c0 = 2.",
+            topic: "Calculus",
+            difficulty: "hard"
+        },
+        {
+            q: "Eigenvalues of [[2,0],[0,3]]?",
+            options: ["1,2", "2,3", "0,5", "3,4"],
+            answer: "2,3",
+            explanation: "Diagonal matrix eigenvalues = diagonal.",
+            topic: "Linear Algebra",
+            difficulty: "hard"
+        },
+        {
+            q: "Limit x\u21920 of sin(x)/x?",
+            options: ["0", "1", "\u221e", "Undefined"],
+            answer: "1",
+            explanation: "Standard limit.",
+            topic: "Calculus",
+            difficulty: "hard"
+        },
+        {
+            q: "Number of permutations of 'LEVEL'?",
+            options: ["30", "60", "120", "20"],
+            answer: "30",
+            explanation: "5!/(2!2!)=30.",
+            topic: "Combinatorics",
+            difficulty: "hard"
+        },
+        {
+            q: "Rank of [[1,2],[2,4]]?",
+            options: ["0", "1", "2", "3"],
+            answer: "1",
+            explanation: "Rows are linearly dependent.",
+            topic: "Linear Algebra",
+            difficulty: "hard"
+        },
+        {
+            q: "If f(x)=e^(2x), f'(x)=?",
+            options: ["e^(2x)", "2e^(2x)", "e^x", "2x"],
+            answer: "2e^(2x)",
+            explanation: "Chain rule.",
+            topic: "Calculus",
+            difficulty: "hard"
+        },
+        {
+            q: "Variance of {2,4,4,4,5,5,7,9}?",
+            options: ["2", "4", "16", "8"],
+            answer: "4",
+            explanation: "Mean=5, variance=4.",
+            topic: "Statistics",
+            difficulty: "hard"
+        },
+        {
+            q: "Solve x\u00b2-5x+6=0.",
+            options: ["1,6", "2,3", "-2,-3", "0,5"],
+            answer: "2,3",
+            explanation: "Factor (x-2)(x-3).",
+            topic: "Algebra",
+            difficulty: "hard"
+        },
+        {
+            q: "Probability of two heads in two fair tosses?",
+            options: ["1/2", "1/3", "1/4", "1/8"],
+            answer: "1/4",
+            explanation: "(1/2)*(1/2).",
+            topic: "Probability",
+            difficulty: "hard"
+        },
+        {
+            q: "Inverse of [[1,2],[3,4]] determinant?",
+            options: ["-2", "2", "0", "1"],
+            answer: "-2",
+            explanation: "1*4-2*3=-2.",
+            topic: "Linear Algebra",
+            difficulty: "hard"
+        },
+    ],
+    DBMS: [
+        {
+            q: "What does SQL stand for?",
+            options: ["Structured Query Language", "Simple Query Logic", "Server Query Link", "System Quick Lookup"],
+            answer: "Structured Query Language",
+            explanation: "SQL = Structured Query Language.",
+            topic: "Basics",
+            difficulty: "easy"
+        },
+        {
+            q: "Which command retrieves data?",
+            options: ["INSERT", "SELECT", "UPDATE", "DELETE"],
+            answer: "SELECT",
+            explanation: "SELECT reads data.",
+            topic: "SQL Commands",
+            difficulty: "easy"
+        },
+        {
+            q: "DBMS stands for?",
+            options: ["Database Management System", "Data Backup Management Server", "Distributed Memory System", "Digital Base Module"],
+            answer: "Database Management System",
+            explanation: "Definition.",
+            topic: "Basics",
+            difficulty: "easy"
+        },
+        {
+            q: "Which is a DDL command?",
+            options: ["SELECT", "CREATE", "INSERT", "UPDATE"],
+            answer: "CREATE",
+            explanation: "CREATE defines schema.",
+            topic: "SQL Commands",
+            difficulty: "easy"
+        },
+        {
+            q: "Primary key allows NULL?",
+            options: ["Yes", "No", "Only one NULL", "Depends on DB"],
+            answer: "No",
+            explanation: "PK must be unique and NOT NULL.",
+            topic: "Keys & Constraints",
+            difficulty: "easy"
+        },
+        {
+            q: "Which is NOT a relational DB?",
+            options: ["MySQL", "PostgreSQL", "MongoDB", "Oracle"],
+            answer: "MongoDB",
+            explanation: "MongoDB is NoSQL.",
+            topic: "Basics",
+            difficulty: "easy"
+        },
+        {
+            q: "A row in a table is also called?",
+            options: ["Tuple", "Attribute", "Schema", "Domain"],
+            answer: "Tuple",
+            explanation: "Row = Tuple.",
+            topic: "Basics",
+            difficulty: "easy"
+        },
+        {
+            q: "Which clause filters rows?",
+            options: ["WHERE", "ORDER BY", "GROUP BY", "HAVING"],
+            answer: "WHERE",
+            explanation: "WHERE filters rows.",
+            topic: "SQL Commands",
+            difficulty: "easy"
+        },
+        {
+            q: "Which command deletes all rows but keeps the table?",
+            options: ["DROP", "DELETE", "TRUNCATE", "REMOVE"],
+            answer: "TRUNCATE",
+            explanation: "TRUNCATE empties the table.",
+            topic: "SQL Commands",
+            difficulty: "easy"
+        },
+        {
+            q: "A column is also called?",
+            options: ["Tuple", "Attribute", "Record", "Relation"],
+            answer: "Attribute",
+            explanation: "Column = Attribute.",
+            topic: "Basics",
+            difficulty: "easy"
+        },
+        {
+            q: "Which key uniquely identifies a record?",
+            options: ["Foreign Key", "Primary Key", "Candidate Key", "Composite Key"],
+            answer: "Primary Key",
+            explanation: "PK uniquely identifies rows.",
+            topic: "Keys & Constraints",
+            difficulty: "medium"
+        },
+        {
+            q: "Which normal form removes transitive dependency?",
+            options: ["1NF", "2NF", "3NF", "BCNF"],
+            answer: "3NF",
+            explanation: "3NF removes transitive dependency.",
+            topic: "Normalization",
+            difficulty: "medium"
+        },
+        {
+            q: "Which SQL command removes a table structure?",
+            options: ["DELETE", "DROP", "TRUNCATE", "REMOVE"],
+            answer: "DROP",
+            explanation: "DROP removes the table.",
+            topic: "SQL Commands",
+            difficulty: "medium"
+        },
+        {
+            q: "Which is NOT a join type?",
+            options: ["INNER JOIN", "OUTER JOIN", "CROSS JOIN", "PARALLEL JOIN"],
+            answer: "PARALLEL JOIN",
+            explanation: "No 'parallel join' in SQL.",
+            topic: "Joins",
+            difficulty: "medium"
+        },
+        {
+            q: "ACID properties ensure?",
+            options: ["Indexing", "Transaction reliability", "Data redundancy", "Query optimization"],
+            answer: "Transaction reliability",
+            explanation: "ACID = transaction reliability.",
+            topic: "Transactions",
+            difficulty: "medium"
+        },
+        {
+            q: "Which constraint enforces referential integrity?",
+            options: ["Primary Key", "Foreign Key", "Check", "Unique"],
+            answer: "Foreign Key",
+            explanation: "FK references PK.",
+            topic: "Keys & Constraints",
+            difficulty: "medium"
+        },
+        {
+            q: "GROUP BY is used with?",
+            options: ["Aggregate functions", "Indexes", "Triggers", "Views"],
+            answer: "Aggregate functions",
+            explanation: "Groups rows for aggregation.",
+            topic: "SQL Commands",
+            difficulty: "medium"
+        },
+        {
+            q: "Which index type is default in many RDBMS?",
+            options: ["Hash", "Bitmap", "B-Tree", "R-Tree"],
+            answer: "B-Tree",
+            explanation: "B-Tree is standard.",
+            topic: "Indexing",
+            difficulty: "medium"
+        },
+        {
+            q: "View in SQL is?",
+            options: ["Physical table", "Virtual table", "Index", "Trigger"],
+            answer: "Virtual table",
+            explanation: "Views are derived from queries.",
+            topic: "Views",
+            difficulty: "medium"
+        },
+        {
+            q: "Which isolation level prevents dirty reads but allows non-repeatable reads?",
+            options: ["Read Uncommitted", "Read Committed", "Repeatable Read", "Serializable"],
+            answer: "Read Committed",
+            explanation: "Standard definition.",
+            topic: "Transactions",
+            difficulty: "medium"
+        },
+        {
+            q: "Which NF deals with multivalued dependency?",
+            options: ["3NF", "BCNF", "4NF", "5NF"],
+            answer: "4NF",
+            explanation: "4NF handles MVDs.",
+            topic: "Normalization",
+            difficulty: "hard"
+        },
+        {
+            q: "Two-phase locking guarantees?",
+            options: ["Deadlock freedom", "Conflict serializability", "No starvation", "Read consistency only"],
+            answer: "Conflict serializability",
+            explanation: "2PL ensures serializability.",
+            topic: "Concurrency",
+            difficulty: "hard"
+        },
+        {
+            q: "Phantom reads are prevented by?",
+            options: ["Read Committed", "Repeatable Read", "Serializable", "Read Uncommitted"],
+            answer: "Serializable",
+            explanation: "Only Serializable prevents phantoms.",
+            topic: "Transactions",
+            difficulty: "hard"
+        },
+        {
+            q: "Hash index is best for?",
+            options: ["Range queries", "Equality lookups", "Sorting", "Full-text search"],
+            answer: "Equality lookups",
+            explanation: "Hash is O(1) for equality.",
+            topic: "Indexing",
+            difficulty: "hard"
+        },
+        {
+            q: "Which is a lossless decomposition condition?",
+            options: ["Common attr is superkey", "Tables same size", "No FK", "All NULL"],
+            answer: "Common attr is superkey",
+            explanation: "Lossless join requirement.",
+            topic: "Normalization",
+            difficulty: "hard"
+        },
+        {
+            q: "ARIES recovery uses?",
+            options: ["Shadow paging", "Write-ahead logging", "Checkpointing only", "Mirroring"],
+            answer: "Write-ahead logging",
+            explanation: "ARIES = WAL based.",
+            topic: "Recovery",
+            difficulty: "hard"
+        },
+        {
+            q: "Which is conflict-equivalent to serial schedule?",
+            options: ["Any concurrent schedule", "Conflict serializable schedule", "Recoverable schedule", "Cascadeless schedule"],
+            answer: "Conflict serializable schedule",
+            explanation: "Definition.",
+            topic: "Concurrency",
+            difficulty: "hard"
+        },
+        {
+            q: "BCNF stricter than 3NF when?",
+            options: ["Every NF is BCNF", "Determinant not a superkey", "FD is trivial", "No PK exists"],
+            answer: "Determinant not a superkey",
+            explanation: "BCNF requires LHS to be superkey.",
+            topic: "Normalization",
+            difficulty: "hard"
+        },
+        {
+            q: "Deadlock detection uses?",
+            options: ["Wait-for graph", "B-Tree", "Hash map", "Log file"],
+            answer: "Wait-for graph",
+            explanation: "Cycle in wait-for graph = deadlock.",
+            topic: "Concurrency",
+            difficulty: "hard"
+        },
+        {
+            q: "Which join uses sorted inputs?",
+            options: ["Hash join", "Nested loop", "Sort-merge join", "Index join"],
+            answer: "Sort-merge join",
+            explanation: "Sort-merge requires sorted inputs.",
+            topic: "Query Processing",
+            difficulty: "hard"
+        },
+    ],
+    DAA: [
+        {
+            q: "Big-O of accessing array element by index?",
+            options: ["O(1)", "O(n)", "O(log n)", "O(n\u00b2)"],
+            answer: "O(1)",
+            explanation: "Array access is constant time.",
+            topic: "Complexity",
+            difficulty: "easy"
+        },
+        {
+            q: "Which sort is simplest to implement?",
+            options: ["Quick Sort", "Bubble Sort", "Merge Sort", "Heap Sort"],
+            answer: "Bubble Sort",
+            explanation: "Bubble sort is simplest.",
+            topic: "Sorting",
+            difficulty: "easy"
+        },
+        {
+            q: "Linear search complexity?",
+            options: ["O(1)", "O(log n)", "O(n)", "O(n\u00b2)"],
+            answer: "O(n)",
+            explanation: "Scan all elements worst case.",
+            topic: "Searching",
+            difficulty: "easy"
+        },
+        {
+            q: "Which DS is FIFO?",
+            options: ["Stack", "Queue", "Tree", "Graph"],
+            answer: "Queue",
+            explanation: "Queue = FIFO.",
+            topic: "Data Structures",
+            difficulty: "easy"
+        },
+        {
+            q: "Recursion uses which DS internally?",
+            options: ["Queue", "Stack", "Heap", "Array"],
+            answer: "Stack",
+            explanation: "Call stack.",
+            topic: "Data Structures",
+            difficulty: "easy"
+        },
+        {
+            q: "Best-case of bubble sort (optimized)?",
+            options: ["O(n)", "O(n log n)", "O(n\u00b2)", "O(1)"],
+            answer: "O(n)",
+            explanation: "Single pass if already sorted.",
+            topic: "Sorting",
+            difficulty: "easy"
+        },
+        {
+            q: "Which is NOT a sorting algo?",
+            options: ["Quick", "Merge", "Dijkstra", "Bubble"],
+            answer: "Dijkstra",
+            explanation: "Dijkstra is shortest path.",
+            topic: "Algorithms",
+            difficulty: "easy"
+        },
+        {
+            q: "Binary search needs?",
+            options: ["Sorted array", "Unsorted array", "Linked list", "Hash table"],
+            answer: "Sorted array",
+            explanation: "Requires sorted input.",
+            topic: "Searching",
+            difficulty: "easy"
+        },
+        {
+            q: "Stack uses which order?",
+            options: ["FIFO", "LIFO", "Random", "Sorted"],
+            answer: "LIFO",
+            explanation: "Last in first out.",
+            topic: "Data Structures",
+            difficulty: "easy"
+        },
+        {
+            q: "Big-O of accessing nth node in singly linked list?",
+            options: ["O(1)", "O(n)", "O(log n)", "O(n\u00b2)"],
+            answer: "O(n)",
+            explanation: "Must traverse.",
+            topic: "Data Structures",
+            difficulty: "easy"
+        },
+        {
+            q: "Time complexity of binary search?",
+            options: ["O(n)", "O(log n)", "O(n log n)", "O(1)"],
+            answer: "O(log n)",
+            explanation: "Halves search space.",
+            topic: "Searching",
+            difficulty: "medium"
+        },
+        {
+            q: "Merge Sort uses which technique?",
+            options: ["Greedy", "DP", "Divide and Conquer", "Backtracking"],
+            answer: "Divide and Conquer",
+            explanation: "Splits & merges.",
+            topic: "Sorting",
+            difficulty: "medium"
+        },
+        {
+            q: "Worst-case of Quick Sort?",
+            options: ["O(n)", "O(n log n)", "O(n^2)", "O(log n)"],
+            answer: "O(n^2)",
+            explanation: "Bad pivot choice.",
+            topic: "Sorting",
+            difficulty: "medium"
+        },
+        {
+            q: "0/1 Knapsack uses?",
+            options: ["Greedy", "DP", "Divide and Conquer", "Brute force only"],
+            answer: "DP",
+            explanation: "Optimal substructure.",
+            topic: "Dynamic Programming",
+            difficulty: "medium"
+        },
+        {
+            q: "Heap Sort time complexity?",
+            options: ["O(n)", "O(n log n)", "O(n\u00b2)", "O(log n)"],
+            answer: "O(n log n)",
+            explanation: "Build + extract.",
+            topic: "Sorting",
+            difficulty: "medium"
+        },
+        {
+            q: "Dijkstra's algorithm finds?",
+            options: ["MST", "Shortest path", "Topological order", "Cycle"],
+            answer: "Shortest path",
+            explanation: "Single-source shortest path.",
+            topic: "Graphs",
+            difficulty: "medium"
+        },
+        {
+            q: "Which is greedy?",
+            options: ["Kruskal's", "Floyd-Warshall", "Bellman-Ford", "Matrix chain"],
+            answer: "Kruskal's",
+            explanation: "Picks min edge greedily.",
+            topic: "Greedy",
+            difficulty: "medium"
+        },
+        {
+            q: "BFS uses which DS?",
+            options: ["Stack", "Queue", "Heap", "Trie"],
+            answer: "Queue",
+            explanation: "FIFO for level order.",
+            topic: "Graphs",
+            difficulty: "medium"
+        },
+        {
+            q: "Insertion sort best case?",
+            options: ["O(n log n)", "O(n)", "O(n\u00b2)", "O(1)"],
+            answer: "O(n)",
+            explanation: "Already sorted input.",
+            topic: "Sorting",
+            difficulty: "medium"
+        },
+        {
+            q: "Hash table average lookup?",
+            options: ["O(1)", "O(log n)", "O(n)", "O(n\u00b2)"],
+            answer: "O(1)",
+            explanation: "With good hashing.",
+            topic: "Hashing",
+            difficulty: "medium"
+        },
+        {
+            q: "Master theorem T(n)=2T(n/2)+n solves to?",
+            options: ["O(n)", "O(n log n)", "O(n\u00b2)", "O(log n)"],
+            answer: "O(n log n)",
+            explanation: "Case 2 of master theorem.",
+            topic: "Recurrences",
+            difficulty: "hard"
+        },
+        {
+            q: "Floyd-Warshall complexity?",
+            options: ["O(n\u00b2)", "O(n\u00b3)", "O(n log n)", "O(V+E)"],
+            answer: "O(n\u00b3)",
+            explanation: "Triple nested loops.",
+            topic: "Graphs",
+            difficulty: "hard"
+        },
+        {
+            q: "Bellman-Ford detects?",
+            options: ["MST", "Negative cycles", "Topological sort", "Bipartite"],
+            answer: "Negative cycles",
+            explanation: "After V-1 relaxations.",
+            topic: "Graphs",
+            difficulty: "hard"
+        },
+        {
+            q: "LCS DP complexity for strings length m,n?",
+            options: ["O(m+n)", "O(mn)", "O(m log n)", "O(2^n)"],
+            answer: "O(mn)",
+            explanation: "Fill m\u00d7n table.",
+            topic: "Dynamic Programming",
+            difficulty: "hard"
+        },
+        {
+            q: "NP-complete problem example?",
+            options: ["Sorting", "SAT", "Binary search", "Matrix mult"],
+            answer: "SAT",
+            explanation: "3-SAT is NP-complete.",
+            topic: "Complexity Theory",
+            difficulty: "hard"
+        },
+        {
+            q: "Strassen's matrix mult complexity?",
+            options: ["O(n\u00b3)", "O(n^2.807)", "O(n\u00b2)", "O(n log n)"],
+            answer: "O(n^2.807)",
+            explanation: "\u2248 n^log7.",
+            topic: "Divide and Conquer",
+            difficulty: "hard"
+        },
+        {
+            q: "A* uses which heuristic property?",
+            options: ["Admissible", "Reflexive", "Symmetric", "Monotonic only"],
+            answer: "Admissible",
+            explanation: "Never overestimates.",
+            topic: "AI Search",
+            difficulty: "hard"
+        },
+        {
+            q: "Number of comparisons in worst case merge of n elements?",
+            options: ["n/2", "n-1", "n", "n log n"],
+            answer: "n-1",
+            explanation: "Merging two sorted halves.",
+            topic: "Sorting",
+            difficulty: "hard"
+        },
+        {
+            q: "Approximation ratio of greedy vertex cover?",
+            options: ["1", "2", "log n", "n"],
+            answer: "2",
+            explanation: "2-approximation.",
+            topic: "Approximation",
+            difficulty: "hard"
+        },
+        {
+            q: "Edit distance between 'cat' and 'cut'?",
+            options: ["0", "1", "2", "3"],
+            answer: "1",
+            explanation: "Substitute a\u2192u.",
+            topic: "Dynamic Programming",
+            difficulty: "hard"
+        },
+    ],
+    OS: [
+        {
+            q: "What is an OS?",
+            options: ["Hardware", "Software managing hardware", "Programming language", "Database"],
+            answer: "Software managing hardware",
+            explanation: "Definition.",
+            topic: "Basics",
+            difficulty: "easy"
+        },
+        {
+            q: "Which is not an OS?",
+            options: ["Linux", "Windows", "Oracle", "macOS"],
+            answer: "Oracle",
+            explanation: "Oracle is a DB.",
+            topic: "Basics",
+            difficulty: "easy"
+        },
+        {
+            q: "Process is?",
+            options: ["Program in execution", "Static code", "File", "CPU register"],
+            answer: "Program in execution",
+            explanation: "Definition.",
+            topic: "Processes",
+            difficulty: "easy"
+        },
+        {
+            q: "Which schedules processes onto CPU?",
+            options: ["Compiler", "Scheduler", "Loader", "Linker"],
+            answer: "Scheduler",
+            explanation: "CPU scheduler.",
+            topic: "Scheduling",
+            difficulty: "easy"
+        },
+        {
+            q: "RAM is?",
+            options: ["Volatile", "Non-volatile", "Permanent", "Optical"],
+            answer: "Volatile",
+            explanation: "Loses contents on power off.",
+            topic: "Memory",
+            difficulty: "easy"
+        },
+        {
+            q: "Which is a kernel mode operation?",
+            options: ["Printing 'Hello'", "Direct hardware access", "Opening browser", "Editing file"],
+            answer: "Direct hardware access",
+            explanation: "Privileged.",
+            topic: "Kernel",
+            difficulty: "easy"
+        },
+        {
+            q: "Thread is?",
+            options: ["Heavyweight process", "Lightweight process", "File", "Driver"],
+            answer: "Lightweight process",
+            explanation: "Threads share process resources.",
+            topic: "Threads",
+            difficulty: "easy"
+        },
+        {
+            q: "Boot loader location?",
+            options: ["RAM", "ROM/MBR", "Hard disk only", "Cache"],
+            answer: "ROM/MBR",
+            explanation: "BIOS/MBR boots OS.",
+            topic: "Booting",
+            difficulty: "easy"
+        },
+        {
+            q: "Which is system software?",
+            options: ["MS Word", "Compiler", "Photoshop", "VLC"],
+            answer: "Compiler",
+            explanation: "System software.",
+            topic: "Basics",
+            difficulty: "easy"
+        },
+        {
+            q: "Multitasking means?",
+            options: ["One task at a time", "Many tasks concurrently", "Only kernel tasks", "No tasks"],
+            answer: "Many tasks concurrently",
+            explanation: "Concurrent execution.",
+            topic: "Basics",
+            difficulty: "easy"
+        },
+        {
+            q: "Which scheduling can cause starvation?",
+            options: ["FCFS", "Round Robin", "Priority Scheduling", "SJF (non-preemptive)"],
+            answer: "Priority Scheduling",
+            explanation: "Low priority may wait forever.",
+            topic: "CPU Scheduling",
+            difficulty: "medium"
+        },
+        {
+            q: "What is a deadlock?",
+            options: ["Process running indefinitely", "Set of processes waiting on each other forever", "Memory overflow", "CPU overheating"],
+            answer: "Set of processes waiting on each other forever",
+            explanation: "Classic definition.",
+            topic: "Deadlocks",
+            difficulty: "medium"
+        },
+        {
+            q: "Which suffers external fragmentation?",
+            options: ["Paging", "Segmentation", "Both", "Neither"],
+            answer: "Segmentation",
+            explanation: "Variable-sized segments.",
+            topic: "Memory Management",
+            difficulty: "medium"
+        },
+        {
+            q: "Semaphore is used for?",
+            options: ["Compression", "Process synchronization", "Disk scheduling", "Routing"],
+            answer: "Process synchronization",
+            explanation: "Synchronization primitive.",
+            topic: "Synchronization",
+            difficulty: "medium"
+        },
+        {
+            q: "Belady's anomaly occurs in?",
+            options: ["LRU", "FIFO", "Optimal", "MRU"],
+            answer: "FIFO",
+            explanation: "Adding frames can increase faults.",
+            topic: "Page Replacement",
+            difficulty: "medium"
+        },
+        {
+            q: "Context switch saves?",
+            options: ["Cache", "CPU registers/PCB", "Disk", "BIOS"],
+            answer: "CPU registers/PCB",
+            explanation: "PCB stores context.",
+            topic: "Processes",
+            difficulty: "medium"
+        },
+        {
+            q: "Which IPC is fastest?",
+            options: ["Pipe", "Shared memory", "Socket", "Message queue"],
+            answer: "Shared memory",
+            explanation: "No kernel copy.",
+            topic: "IPC",
+            difficulty: "medium"
+        },
+        {
+            q: "Thrashing is caused by?",
+            options: ["Excessive paging", "Fast CPU", "Large cache", "Idle CPU"],
+            answer: "Excessive paging",
+            explanation: "Too many page faults.",
+            topic: "Memory Management",
+            difficulty: "medium"
+        },
+        {
+            q: "Round Robin requires?",
+            options: ["Priority", "Time quantum", "Burst time", "Deadline"],
+            answer: "Time quantum",
+            explanation: "Time slice.",
+            topic: "CPU Scheduling",
+            difficulty: "medium"
+        },
+        {
+            q: "Which is not a deadlock condition?",
+            options: ["Mutual exclusion", "Hold and wait", "Preemption", "Circular wait"],
+            answer: "Preemption",
+            explanation: "No preemption is required.",
+            topic: "Deadlocks",
+            difficulty: "medium"
+        },
+        {
+            q: "Banker's algorithm is for?",
+            options: ["Deadlock prevention", "Deadlock avoidance", "Deadlock detection", "Recovery"],
+            answer: "Deadlock avoidance",
+            explanation: "Safe state check.",
+            topic: "Deadlocks",
+            difficulty: "hard"
+        },
+        {
+            q: "Inverted page table reduces?",
+            options: ["Page faults", "Page table size", "TLB misses", "Context switches"],
+            answer: "Page table size",
+            explanation: "One entry per frame.",
+            topic: "Memory Management",
+            difficulty: "hard"
+        },
+        {
+            q: "Which scheduling minimizes avg waiting time?",
+            options: ["FCFS", "RR", "SJF", "Priority"],
+            answer: "SJF",
+            explanation: "Provably optimal.",
+            topic: "CPU Scheduling",
+            difficulty: "hard"
+        },
+        {
+            q: "Working set model defines?",
+            options: ["Disk usage", "Active page set", "CPU usage", "File descriptors"],
+            answer: "Active page set",
+            explanation: "Pages used in window.",
+            topic: "Memory Management",
+            difficulty: "hard"
+        },
+        {
+            q: "Which guarantees mutual exclusion w/o busy wait?",
+            options: ["TestAndSet", "Semaphore", "Disabling interrupts only", "Peterson's only"],
+            answer: "Semaphore",
+            explanation: "Blocks waiting processes.",
+            topic: "Synchronization",
+            difficulty: "hard"
+        },
+        {
+            q: "Reader-writer problem solution prevents?",
+            options: ["Cycles", "Starvation of writers", "Race conditions only", "Page faults"],
+            answer: "Starvation of writers",
+            explanation: "Classic synchronization issue.",
+            topic: "Synchronization",
+            difficulty: "hard"
+        },
+        {
+            q: "Demand paging brings page on?",
+            options: ["Boot", "Page fault", "Context switch", "System call"],
+            answer: "Page fault",
+            explanation: "Loaded when needed.",
+            topic: "Memory Management",
+            difficulty: "hard"
+        },
+        {
+            q: "Which page replacement is optimal but impractical?",
+            options: ["LRU", "FIFO", "OPT", "Clock"],
+            answer: "OPT",
+            explanation: "Needs future knowledge.",
+            topic: "Page Replacement",
+            difficulty: "hard"
+        },
+        {
+            q: "System call transitions from?",
+            options: ["Kernel to user", "User to kernel", "Kernel to kernel", "User to user"],
+            answer: "User to kernel",
+            explanation: "Trap into kernel mode.",
+            topic: "Kernel",
+            difficulty: "hard"
+        },
+        {
+            q: "Which file system uses inodes?",
+            options: ["FAT32", "NTFS", "ext4", "exFAT"],
+            answer: "ext4",
+            explanation: "Unix-like FS use inodes.",
+            topic: "File Systems",
+            difficulty: "hard"
+        },
+    ],
+    DS: [
+        {
+            q: "Which DS uses LIFO?",
+            options: ["Queue", "Stack", "Linked List", "Tree"],
+            answer: "Stack",
+            explanation: "LIFO.",
+            topic: "Stacks & Queues",
+            difficulty: "easy"
+        },
+        {
+            q: "Array index typically starts at?",
+            options: ["-1", "0", "1", "2"],
+            answer: "0",
+            explanation: "Zero-indexed.",
+            topic: "Arrays",
+            difficulty: "easy"
+        },
+        {
+            q: "Queue uses which order?",
+            options: ["LIFO", "FIFO", "Random", "Sorted"],
+            answer: "FIFO",
+            explanation: "First in first out.",
+            topic: "Stacks & Queues",
+            difficulty: "easy"
+        },
+        {
+            q: "Which is linear DS?",
+            options: ["Tree", "Graph", "Array", "Heap"],
+            answer: "Array",
+            explanation: "Linear arrangement.",
+            topic: "Arrays",
+            difficulty: "easy"
+        },
+        {
+            q: "Linked list nodes contain?",
+            options: ["Only data", "Data and pointer", "Only pointer", "Index"],
+            answer: "Data and pointer",
+            explanation: "Each node has data + next.",
+            topic: "Linked Lists",
+            difficulty: "easy"
+        },
+        {
+            q: "Root of a tree has?",
+            options: ["No parent", "One parent", "Many parents", "Itself"],
+            answer: "No parent",
+            explanation: "Root has no parent.",
+            topic: "Trees",
+            difficulty: "easy"
+        },
+        {
+            q: "Push and Pop operate on?",
+            options: ["Queue", "Stack", "Tree", "Graph"],
+            answer: "Stack",
+            explanation: "Stack ops.",
+            topic: "Stacks & Queues",
+            difficulty: "easy"
+        },
+        {
+            q: "Enqueue adds at?",
+            options: ["Front", "Rear", "Middle", "Anywhere"],
+            answer: "Rear",
+            explanation: "Queue adds at rear.",
+            topic: "Stacks & Queues",
+            difficulty: "easy"
+        },
+        {
+            q: "How many children in binary tree (max)?",
+            options: ["1", "2", "3", "Any"],
+            answer: "2",
+            explanation: "Binary = 2 children max.",
+            topic: "Trees",
+            difficulty: "easy"
+        },
+        {
+            q: "Which is non-linear DS?",
+            options: ["Array", "Linked List", "Tree", "Stack"],
+            answer: "Tree",
+            explanation: "Hierarchical.",
+            topic: "Trees",
+            difficulty: "easy"
+        },
+        {
+            q: "Insert at head of singly linked list complexity?",
+            options: ["O(1)", "O(n)", "O(log n)", "O(n\u00b2)"],
+            answer: "O(1)",
+            explanation: "Pointer update only.",
+            topic: "Linked Lists",
+            difficulty: "medium"
+        },
+        {
+            q: "Which BST traversal gives sorted order?",
+            options: ["Pre-order", "Post-order", "In-order", "Level-order"],
+            answer: "In-order",
+            explanation: "L-Root-R.",
+            topic: "Trees",
+            difficulty: "medium"
+        },
+        {
+            q: "BFS uses which DS?",
+            options: ["Stack", "Queue", "Heap", "Array"],
+            answer: "Queue",
+            explanation: "Level by level.",
+            topic: "Graphs",
+            difficulty: "medium"
+        },
+        {
+            q: "Worst-case height of balanced AVL with n nodes?",
+            options: ["O(n)", "O(log n)", "O(n\u00b2)", "O(1)"],
+            answer: "O(log n)",
+            explanation: "Self-balancing.",
+            topic: "Balanced Trees",
+            difficulty: "medium"
+        },
+        {
+            q: "DFS uses which DS?",
+            options: ["Queue", "Stack", "Heap", "Trie"],
+            answer: "Stack",
+            explanation: "LIFO recursion.",
+            topic: "Graphs",
+            difficulty: "medium"
+        },
+        {
+            q: "Heap is typically implemented as?",
+            options: ["Linked list", "Array", "Tree of pointers", "Hash table"],
+            answer: "Array",
+            explanation: "Compact array rep.",
+            topic: "Heaps",
+            difficulty: "medium"
+        },
+        {
+            q: "Hash collisions resolved by?",
+            options: ["Chaining", "Sorting", "Recursion", "Indexing"],
+            answer: "Chaining",
+            explanation: "Linked list per bucket.",
+            topic: "Hashing",
+            difficulty: "medium"
+        },
+        {
+            q: "Deletion in singly linked list (given pointer to prev) complexity?",
+            options: ["O(1)", "O(n)", "O(log n)", "O(n\u00b2)"],
+            answer: "O(1)",
+            explanation: "Pointer relink.",
+            topic: "Linked Lists",
+            difficulty: "medium"
+        },
+        {
+            q: "Min-heap root contains?",
+            options: ["Max element", "Min element", "Median", "Random"],
+            answer: "Min element",
+            explanation: "Heap property.",
+            topic: "Heaps",
+            difficulty: "medium"
+        },
+        {
+            q: "Circular queue avoids?",
+            options: ["Underflow", "Wasted space", "Overflow only", "Sorting"],
+            answer: "Wasted space",
+            explanation: "Reuses freed slots.",
+            topic: "Stacks & Queues",
+            difficulty: "medium"
+        },
+        {
+            q: "Red-Black tree guarantees height?",
+            options: ["O(n)", "O(log n)", "O(\u221an)", "O(1)"],
+            answer: "O(log n)",
+            explanation: "Balanced.",
+            topic: "Balanced Trees",
+            difficulty: "hard"
+        },
+        {
+            q: "Trie best for?",
+            options: ["Range queries", "Prefix search", "Sorting", "Sum queries"],
+            answer: "Prefix search",
+            explanation: "Tree of characters.",
+            topic: "Tries",
+            difficulty: "hard"
+        },
+        {
+            q: "Segment tree update + query?",
+            options: ["O(n)", "O(log n)", "O(n log n)", "O(1)"],
+            answer: "O(log n)",
+            explanation: "Both ops log n.",
+            topic: "Segment Trees",
+            difficulty: "hard"
+        },
+        {
+            q: "Union-Find with path compression amortized?",
+            options: ["O(1)", "O(log n)", "O(\u03b1(n))", "O(n)"],
+            answer: "O(\u03b1(n))",
+            explanation: "Inverse Ackermann.",
+            topic: "DSU",
+            difficulty: "hard"
+        },
+        {
+            q: "Skip list expected search?",
+            options: ["O(n)", "O(log n)", "O(\u221an)", "O(1)"],
+            answer: "O(log n)",
+            explanation: "Probabilistic balancing.",
+            topic: "Skip Lists",
+            difficulty: "hard"
+        },
+        {
+            q: "B-tree of order m max keys per node?",
+            options: ["m", "m-1", "m+1", "2m"],
+            answer: "m-1",
+            explanation: "By definition.",
+            topic: "B-Trees",
+            difficulty: "hard"
+        },
+        {
+            q: "Fenwick tree (BIT) updates in?",
+            options: ["O(1)", "O(log n)", "O(n)", "O(n log n)"],
+            answer: "O(log n)",
+            explanation: "Lowbit traversal.",
+            topic: "BIT",
+            difficulty: "hard"
+        },
+        {
+            q: "KMP algorithm preprocesses?",
+            options: ["Text", "Pattern", "Both", "Neither"],
+            answer: "Pattern",
+            explanation: "Builds failure function.",
+            topic: "Strings",
+            difficulty: "hard"
+        },
+        {
+            q: "Suffix array build (optimal)?",
+            options: ["O(n\u00b2)", "O(n log n)", "O(n)", "O(n log\u00b2 n)"],
+            answer: "O(n)",
+            explanation: "DC3/SA-IS.",
+            topic: "Strings",
+            difficulty: "hard"
+        },
+        {
+            q: "Topological sort possible iff graph is?",
+            options: ["Connected", "Acyclic", "Bipartite", "Weighted"],
+            answer: "Acyclic",
+            explanation: "DAGs only.",
+            topic: "Graphs",
+            difficulty: "hard"
+        },
+    ],
+    CRYPTO: [
+        {
+            q: "Encryption converts plaintext to?",
+            options: ["Ciphertext", "Hash", "Key", "Signature"],
+            answer: "Ciphertext",
+            explanation: "Definition.",
+            topic: "Basics",
+            difficulty: "easy"
+        },
+        {
+            q: "Which is a hash function?",
+            options: ["AES", "RSA", "SHA-256", "DES"],
+            answer: "SHA-256",
+            explanation: "SHA is a hash.",
+            topic: "Hash Functions",
+            difficulty: "easy"
+        },
+        {
+            q: "Symmetric crypto example?",
+            options: ["RSA", "AES", "ECC", "DSA"],
+            answer: "AES",
+            explanation: "AES is symmetric.",
+            topic: "Symmetric Cryptography",
+            difficulty: "easy"
+        },
+        {
+            q: "Public key crypto needs?",
+            options: ["1 key", "2 keys", "3 keys", "No keys"],
+            answer: "2 keys",
+            explanation: "Public + private.",
+            topic: "Asymmetric Cryptography",
+            difficulty: "easy"
+        },
+        {
+            q: "Decryption reverses?",
+            options: ["Hashing", "Encryption", "Signing", "Compression"],
+            answer: "Encryption",
+            explanation: "Inverse op.",
+            topic: "Basics",
+            difficulty: "easy"
+        },
+        {
+            q: "HTTPS uses?",
+            options: ["TLS", "SSH", "FTP", "SMTP"],
+            answer: "TLS",
+            explanation: "TLS secures HTTP.",
+            topic: "Protocols",
+            difficulty: "easy"
+        },
+        {
+            q: "Digital signature provides?",
+            options: ["Confidentiality", "Authentication", "Compression", "Routing"],
+            answer: "Authentication",
+            explanation: "Verifies sender.",
+            topic: "Signatures",
+            difficulty: "easy"
+        },
+        {
+            q: "Which key is shared publicly in RSA?",
+            options: ["Private", "Public", "Session", "Symmetric"],
+            answer: "Public",
+            explanation: "Public key shared.",
+            topic: "RSA",
+            difficulty: "easy"
+        },
+        {
+            q: "Caesar cipher is?",
+            options: ["Substitution", "Block", "Stream", "Hash"],
+            answer: "Substitution",
+            explanation: "Shifts letters.",
+            topic: "Classical",
+            difficulty: "easy"
+        },
+        {
+            q: "MD5 produces digest of bits?",
+            options: ["64", "128", "160", "256"],
+            answer: "128",
+            explanation: "MD5 \u2192 128-bit.",
+            topic: "Hash Functions",
+            difficulty: "easy"
+        },
+        {
+            q: "Cipher with same key for enc/dec?",
+            options: ["Asymmetric", "Symmetric", "Hash", "Signature"],
+            answer: "Symmetric",
+            explanation: "Single shared key.",
+            topic: "Symmetric Cryptography",
+            difficulty: "medium"
+        },
+        {
+            q: "Public-key algorithm widely used?",
+            options: ["AES", "RSA", "DES", "MD5"],
+            answer: "RSA",
+            explanation: "RSA is public-key.",
+            topic: "Asymmetric Cryptography",
+            difficulty: "medium"
+        },
+        {
+            q: "Hash function primary purpose?",
+            options: ["Encrypt", "Random keys", "Data integrity", "Compress"],
+            answer: "Data integrity",
+            explanation: "Detects tampering.",
+            topic: "Hash Functions",
+            difficulty: "medium"
+        },
+        {
+            q: "RSA public key consists of?",
+            options: ["p,q", "n,e", "n,d", "e,d"],
+            answer: "n,e",
+            explanation: "Modulus + public exponent.",
+            topic: "RSA",
+            difficulty: "medium"
+        },
+        {
+            q: "Attack trying every key?",
+            options: ["Replay", "Brute-force", "Phishing", "MITM"],
+            answer: "Brute-force",
+            explanation: "Exhaustive search.",
+            topic: "Attacks",
+            difficulty: "medium"
+        },
+        {
+            q: "AES block size?",
+            options: ["64 bits", "128 bits", "192 bits", "256 bits"],
+            answer: "128 bits",
+            explanation: "Fixed at 128.",
+            topic: "AES",
+            difficulty: "medium"
+        },
+        {
+            q: "Diffie-Hellman is used for?",
+            options: ["Encryption", "Key exchange", "Signing", "Hashing"],
+            answer: "Key exchange",
+            explanation: "Establishes shared key.",
+            topic: "Key Exchange",
+            difficulty: "medium"
+        },
+        {
+            q: "Which mode of operation provides IV?",
+            options: ["ECB", "CBC", "Both", "Neither"],
+            answer: "CBC",
+            explanation: "CBC uses IV.",
+            topic: "Modes",
+            difficulty: "medium"
+        },
+        {
+            q: "HMAC provides?",
+            options: ["Encryption", "Authenticated hashing", "Key exchange", "Compression"],
+            answer: "Authenticated hashing",
+            explanation: "Keyed MAC.",
+            topic: "MAC",
+            difficulty: "medium"
+        },
+        {
+            q: "Which is a stream cipher?",
+            options: ["AES", "RC4", "DES", "3DES"],
+            answer: "RC4",
+            explanation: "RC4 is stream.",
+            topic: "Symmetric Cryptography",
+            difficulty: "medium"
+        },
+        {
+            q: "ECC security based on?",
+            options: ["Factoring", "Discrete log over EC", "Hashing", "Permutations"],
+            answer: "Discrete log over EC",
+            explanation: "ECDLP.",
+            topic: "ECC",
+            difficulty: "hard"
+        },
+        {
+            q: "Birthday attack relevant to?",
+            options: ["Block ciphers", "Hash collisions", "Key exchange", "Padding"],
+            answer: "Hash collisions",
+            explanation: "Collision probability.",
+            topic: "Attacks",
+            difficulty: "hard"
+        },
+        {
+            q: "Which is post-quantum candidate?",
+            options: ["RSA", "ECC", "Lattice-based", "DES"],
+            answer: "Lattice-based",
+            explanation: "Resistant to Shor's.",
+            topic: "Post-Quantum",
+            difficulty: "hard"
+        },
+        {
+            q: "CCA stands for?",
+            options: ["Chosen Ciphertext Attack", "Cipher Code Analysis", "Cryptographic Cert Authority", "Chained Cipher Algorithm"],
+            answer: "Chosen Ciphertext Attack",
+            explanation: "Adversary model.",
+            topic: "Attacks",
+            difficulty: "hard"
+        },
+        {
+            q: "AES-256 has rounds?",
+            options: ["10", "12", "14", "16"],
+            answer: "14",
+            explanation: "AES-256 \u2192 14 rounds.",
+            topic: "AES",
+            difficulty: "hard"
+        },
+        {
+            q: "RSA decryption uses?",
+            options: ["Public exponent", "Private exponent d", "Modulus only", "IV"],
+            answer: "Private exponent d",
+            explanation: "d is private.",
+            topic: "RSA",
+            difficulty: "hard"
+        },
+        {
+            q: "Which mode is parallelizable for encryption?",
+            options: ["CBC", "CTR", "CFB", "OFB"],
+            answer: "CTR",
+            explanation: "Counter mode.",
+            topic: "Modes",
+            difficulty: "hard"
+        },
+        {
+            q: "Length-extension attack affects?",
+            options: ["SHA-3", "HMAC", "MD5/SHA-1 (raw)", "AES"],
+            answer: "MD5/SHA-1 (raw)",
+            explanation: "Merkle\u2013Damg\u00e5rd weakness.",
+            topic: "Hash Functions",
+            difficulty: "hard"
+        },
+        {
+            q: "Shor's algorithm breaks?",
+            options: ["AES", "RSA/ECC", "SHA-256", "HMAC"],
+            answer: "RSA/ECC",
+            explanation: "Polynomial-time factoring.",
+            topic: "Post-Quantum",
+            difficulty: "hard"
+        },
+        {
+            q: "Zero-knowledge proof allows?",
+            options: ["Encrypting data", "Proving knowledge w/o revealing", "Hashing", "Compression"],
+            answer: "Proving knowledge w/o revealing",
+            explanation: "ZK property.",
+            topic: "Protocols",
+            difficulty: "hard"
+        },
+    ],
+    OOPS_CPP: [
+        {
+            q: "OOP stands for?",
+            options: ["Object Oriented Programming", "Open Office Protocol", "Online Object Process", "Operator Order Pattern"],
+            answer: "Object Oriented Programming",
+            explanation: "Definition.",
+            topic: "Basics",
+            difficulty: "easy"
+        },
+        {
+            q: "Class is a?",
+            options: ["Object", "Blueprint of objects", "Function", "Variable"],
+            answer: "Blueprint of objects",
+            explanation: "Template.",
+            topic: "Classes",
+            difficulty: "easy"
+        },
+        {
+            q: "Which is not a pillar of OOP?",
+            options: ["Encapsulation", "Inheritance", "Compilation", "Polymorphism"],
+            answer: "Compilation",
+            explanation: "Compilation is not a pillar.",
+            topic: "Basics",
+            difficulty: "easy"
+        },
+        {
+            q: "Object is?",
+            options: ["Instance of a class", "Pointer", "Macro", "Header file"],
+            answer: "Instance of a class",
+            explanation: "Definition.",
+            topic: "Classes",
+            difficulty: "easy"
+        },
+        {
+            q: "Which symbol calls a member function on an object?",
+            options: [".", ":", "->", "::"],
+            answer: ".",
+            explanation: "Dot operator.",
+            topic: "Classes",
+            difficulty: "easy"
+        },
+        {
+            q: "Constructor name matches?",
+            options: ["Class name", "Filename", "main", "Any"],
+            answer: "Class name",
+            explanation: "By rule.",
+            topic: "Constructors",
+            difficulty: "easy"
+        },
+        {
+            q: "Destructor symbol?",
+            options: ["#", "~", "@", "&"],
+            answer: "~",
+            explanation: "Tilde prefix.",
+            topic: "Constructors",
+            difficulty: "easy"
+        },
+        {
+            q: "Encapsulation means?",
+            options: ["Hiding data", "Inheritance", "Overloading", "Templates"],
+            answer: "Hiding data",
+            explanation: "Bundling + restriction.",
+            topic: "Encapsulation",
+            difficulty: "easy"
+        },
+        {
+            q: "Which header for cout?",
+            options: ["<stdio.h>", "<iostream>", "<string>", "<vector>"],
+            answer: "<iostream>",
+            explanation: "Standard I/O streams.",
+            topic: "Basics",
+            difficulty: "easy"
+        },
+        {
+            q: "'new' keyword does?",
+            options: ["Frees memory", "Allocates memory", "Declares class", "Imports"],
+            answer: "Allocates memory",
+            explanation: "Dynamic allocation.",
+            topic: "Memory",
+            difficulty: "easy"
+        },
+        {
+            q: "OOP concept for inheritance?",
+            options: ["Encapsulation", "Inheritance", "Polymorphism", "Abstraction"],
+            answer: "Inheritance",
+            explanation: "Derived from base.",
+            topic: "Inheritance",
+            difficulty: "medium"
+        },
+        {
+            q: "C++11 keyword preventing inheritance?",
+            options: ["static", "const", "final", "sealed"],
+            answer: "final",
+            explanation: "final specifier.",
+            topic: "Inheritance",
+            difficulty: "medium"
+        },
+        {
+            q: "Function overloading is?",
+            options: ["Override in derived", "Same name, diff params", "Self-call", "No return"],
+            answer: "Same name, diff params",
+            explanation: "Compile-time poly.",
+            topic: "Polymorphism",
+            difficulty: "medium"
+        },
+        {
+            q: "Access only within class?",
+            options: ["public", "protected", "private", "friend"],
+            answer: "private",
+            explanation: "Private members.",
+            topic: "Encapsulation",
+            difficulty: "medium"
+        },
+        {
+            q: "Virtual function enables?",
+            options: ["Speed", "Runtime polymorphism", "Memory alloc", "Operator overload"],
+            answer: "Runtime polymorphism",
+            explanation: "Dynamic dispatch.",
+            topic: "Polymorphism",
+            difficulty: "medium"
+        },
+        {
+            q: "Pure virtual declared as?",
+            options: ["= 0", "virtual()", "abstract", "override"],
+            answer: "= 0",
+            explanation: "Pure virtual syntax.",
+            topic: "Polymorphism",
+            difficulty: "medium"
+        },
+        {
+            q: "Default access in struct?",
+            options: ["private", "public", "protected", "none"],
+            answer: "public",
+            explanation: "Struct default is public.",
+            topic: "Classes",
+            difficulty: "medium"
+        },
+        {
+            q: "Which provides multiple inheritance?",
+            options: ["Java", "C++", "C", "Python only"],
+            answer: "C++",
+            explanation: "C++ supports it.",
+            topic: "Inheritance",
+            difficulty: "medium"
+        },
+        {
+            q: "Templates enable?",
+            options: ["Inheritance", "Generic programming", "Threading", "I/O"],
+            answer: "Generic programming",
+            explanation: "Type-parameterized code.",
+            topic: "Templates",
+            difficulty: "medium"
+        },
+        {
+            q: "Friend function can access?",
+            options: ["Only public", "Private/protected of class", "Only its own data", "Nothing"],
+            answer: "Private/protected of class",
+            explanation: "Friendship grants access.",
+            topic: "Encapsulation",
+            difficulty: "medium"
+        },
+        {
+            q: "Diamond problem solved by?",
+            options: ["Multiple inheritance", "Virtual inheritance", "Templates", "Friend"],
+            answer: "Virtual inheritance",
+            explanation: "Single shared base.",
+            topic: "Inheritance",
+            difficulty: "hard"
+        },
+        {
+            q: "Object slicing happens when?",
+            options: ["Pass derived by value to base", "Pass by ref", "Pass by pointer", "Use virtual"],
+            answer: "Pass derived by value to base",
+            explanation: "Derived parts sliced off.",
+            topic: "Inheritance",
+            difficulty: "hard"
+        },
+        {
+            q: "vtable is used for?",
+            options: ["Static binding", "Dynamic dispatch", "Memory alloc", "Templates"],
+            answer: "Dynamic dispatch",
+            explanation: "Per-class function table.",
+            topic: "Polymorphism",
+            difficulty: "hard"
+        },
+        {
+            q: "RAII stands for?",
+            options: ["Resource Allocation Is Initialization", "Resource Acquisition Is Initialization", "Run-time Allocation Init", "Recursive Access In Init"],
+            answer: "Resource Acquisition Is Initialization",
+            explanation: "C++ idiom.",
+            topic: "Memory",
+            difficulty: "hard"
+        },
+        {
+            q: "Which smart pointer has shared ownership?",
+            options: ["unique_ptr", "shared_ptr", "weak_ptr", "auto_ptr"],
+            answer: "shared_ptr",
+            explanation: "Ref-counted.",
+            topic: "Memory",
+            difficulty: "hard"
+        },
+        {
+            q: "Move semantics introduced in?",
+            options: ["C++03", "C++11", "C++14", "C++98"],
+            answer: "C++11",
+            explanation: "Rvalue references.",
+            topic: "C++11",
+            difficulty: "hard"
+        },
+        {
+            q: "override keyword ensures?",
+            options: ["Pure virtual", "Method overrides base virtual", "Inline", "Compile-time poly"],
+            answer: "Method overrides base virtual",
+            explanation: "Catches signature mismatches.",
+            topic: "Polymorphism",
+            difficulty: "hard"
+        },
+        {
+            q: "Most derived constructor calls base constructor?",
+            options: ["Always", "Only if explicit", "Never", "Random"],
+            answer: "Always",
+            explanation: "Base constructed first.",
+            topic: "Constructors",
+            difficulty: "hard"
+        },
+        {
+            q: "Which is true about static members?",
+            options: ["One per object", "One per class", "One per file", "None"],
+            answer: "One per class",
+            explanation: "Shared by all instances.",
+            topic: "Classes",
+            difficulty: "hard"
+        },
+        {
+            q: "Copy elision is?",
+            options: ["Required always", "Compiler optimization", "Runtime feature", "Linker step"],
+            answer: "Compiler optimization",
+            explanation: "Avoids unnecessary copies.",
+            topic: "Optimization",
+            difficulty: "hard"
+        },
+    ],
+    JAVA: [
+        {
+            q: "Java is?",
+            options: ["Compiled only", "Interpreted only", "Compiled + interpreted (bytecode)", "Assembly"],
+            answer: "Compiled + interpreted (bytecode)",
+            explanation: "Compiled to bytecode, run on JVM.",
+            topic: "Basics",
+            difficulty: "easy"
+        },
+        {
+            q: "File extension for Java source?",
+            options: [".class", ".java", ".jav", ".js"],
+            answer: ".java",
+            explanation: "Source files.",
+            topic: "Basics",
+            difficulty: "easy"
+        },
+        {
+            q: "JVM stands for?",
+            options: ["Java Virtual Machine", "Java Visual Module", "Just-in-time Virtual Machine", "Java Variable Method"],
+            answer: "Java Virtual Machine",
+            explanation: "Definition.",
+            topic: "Basics",
+            difficulty: "easy"
+        },
+        {
+            q: "Which is a primitive type?",
+            options: ["String", "int", "Integer", "List"],
+            answer: "int",
+            explanation: "int is primitive.",
+            topic: "Basics",
+            difficulty: "easy"
+        },
+        {
+            q: "Comment syntax for single-line?",
+            options: ["#", "//", "--", "/* */"],
+            answer: "//",
+            explanation: "Java uses //.",
+            topic: "Syntax",
+            difficulty: "easy"
+        },
+        {
+            q: "Default value of int field?",
+            options: ["null", "0", "1", "-1"],
+            answer: "0",
+            explanation: "Numeric defaults to 0.",
+            topic: "Basics",
+            difficulty: "easy"
+        },
+        {
+            q: "Which package is auto-imported?",
+            options: ["java.io", "java.util", "java.lang", "java.net"],
+            answer: "java.lang",
+            explanation: "java.lang is implicit.",
+            topic: "Basics",
+            difficulty: "easy"
+        },
+        {
+            q: "Java arrays are?",
+            options: ["Primitive", "Objects", "Macros", "Pointers"],
+            answer: "Objects",
+            explanation: "Arrays are objects.",
+            topic: "Arrays",
+            difficulty: "easy"
+        },
+        {
+            q: "Which loop guarantees at least one execution?",
+            options: ["for", "while", "do-while", "foreach"],
+            answer: "do-while",
+            explanation: "Checks condition after.",
+            topic: "Control Flow",
+            difficulty: "easy"
+        },
+        {
+            q: "Which keyword exits a loop?",
+            options: ["return", "exit", "break", "continue"],
+            answer: "break",
+            explanation: "Terminates loop.",
+            topic: "Control Flow",
+            difficulty: "easy"
+        },
+        {
+            q: "Keyword to inherit a class?",
+            options: ["implements", "extends", "inherits", "super"],
+            answer: "extends",
+            explanation: "Class inheritance.",
+            topic: "Inheritance",
+            difficulty: "medium"
+        },
+        {
+            q: "Entry point method?",
+            options: ["start()", "run()", "main()", "init()"],
+            answer: "main()",
+            explanation: "public static void main.",
+            topic: "Basics",
+            difficulty: "medium"
+        },
+        {
+            q: "Keyword for interfaces?",
+            options: ["class", "interface", "abstract", "implements"],
+            answer: "interface",
+            explanation: "Defines interface.",
+            topic: "Interfaces",
+            difficulty: "medium"
+        },
+        {
+            q: "Collection allowing duplicates + order?",
+            options: ["HashSet", "TreeSet", "ArrayList", "HashMap"],
+            answer: "ArrayList",
+            explanation: "List allows dups.",
+            topic: "Collections",
+            difficulty: "medium"
+        },
+        {
+            q: "Default boolean instance variable?",
+            options: ["true", "false", "0", "null"],
+            answer: "false",
+            explanation: "Booleans default false.",
+            topic: "Basics",
+            difficulty: "medium"
+        },
+        {
+            q: "Which is checked exception?",
+            options: ["NullPointerException", "IOException", "ArithmeticException", "ClassCastException"],
+            answer: "IOException",
+            explanation: "IOException is checked.",
+            topic: "Exceptions",
+            difficulty: "medium"
+        },
+        {
+            q: "Method overloading is?",
+            options: ["Same name diff params", "Same signature in subclass", "Constructor reuse", "Hiding"],
+            answer: "Same name diff params",
+            explanation: "Compile-time poly.",
+            topic: "Polymorphism",
+            difficulty: "medium"
+        },
+        {
+            q: "equals() compares?",
+            options: ["Reference", "Content", "Hash", "Length"],
+            answer: "Content",
+            explanation: "Override for value equality.",
+            topic: "Object",
+            difficulty: "medium"
+        },
+        {
+            q: "HashMap allows null key?",
+            options: ["No", "Yes (one)", "Yes (many)", "Only string keys"],
+            answer: "Yes (one)",
+            explanation: "HashMap allows one null key.",
+            topic: "Collections",
+            difficulty: "medium"
+        },
+        {
+            q: "'final' on a variable means?",
+            options: ["Constant", "Abstract", "Static", "Volatile"],
+            answer: "Constant",
+            explanation: "Cannot reassign.",
+            topic: "Keywords",
+            difficulty: "medium"
+        },
+        {
+            q: "JVM memory area for objects?",
+            options: ["Stack", "Heap", "Method area", "PC register"],
+            answer: "Heap",
+            explanation: "Objects on heap.",
+            topic: "JVM",
+            difficulty: "hard"
+        },
+        {
+            q: "Garbage collector algorithm name?",
+            options: ["Reference counting only", "Mark-and-sweep", "Linear", "Hash-based"],
+            answer: "Mark-and-sweep",
+            explanation: "Classical GC.",
+            topic: "JVM",
+            difficulty: "hard"
+        },
+        {
+            q: "ConcurrentHashMap improves over HashMap by?",
+            options: ["Sorting", "Thread-safety", "Compression", "Persistence"],
+            answer: "Thread-safety",
+            explanation: "Concurrent reads/writes.",
+            topic: "Collections",
+            difficulty: "hard"
+        },
+        {
+            q: "Functional interface example?",
+            options: ["Runnable", "Serializable", "Cloneable", "Iterable"],
+            answer: "Runnable",
+            explanation: "Single abstract method.",
+            topic: "Java 8",
+            difficulty: "hard"
+        },
+        {
+            q: "Stream API introduced in?",
+            options: ["Java 6", "Java 7", "Java 8", "Java 11"],
+            answer: "Java 8",
+            explanation: "Functional streams.",
+            topic: "Java 8",
+            difficulty: "hard"
+        },
+        {
+            q: "volatile guarantees?",
+            options: ["Atomicity of compound ops", "Visibility across threads", "Locking", "Immutability"],
+            answer: "Visibility across threads",
+            explanation: "Memory visibility.",
+            topic: "Concurrency",
+            difficulty: "hard"
+        },
+        {
+            q: "Which is not thread-safe?",
+            options: ["Vector", "Hashtable", "ArrayList", "ConcurrentHashMap"],
+            answer: "ArrayList",
+            explanation: "ArrayList unsynchronized.",
+            topic: "Collections",
+            difficulty: "hard"
+        },
+        {
+            q: "ClassLoader hierarchy starts with?",
+            options: ["System", "Extension", "Bootstrap", "Application"],
+            answer: "Bootstrap",
+            explanation: "Bootstrap is root.",
+            topic: "JVM",
+            difficulty: "hard"
+        },
+        {
+            q: "Generics in Java use?",
+            options: ["Type erasure", "Reification", "Templates", "Macros"],
+            answer: "Type erasure",
+            explanation: "Erased at runtime.",
+            topic: "Generics",
+            difficulty: "hard"
+        },
+        {
+            q: "CompletableFuture provides?",
+            options: ["Sync only", "Async composition", "GC", "I/O"],
+            answer: "Async composition",
+            explanation: "Async pipeline.",
+            topic: "Concurrency",
+            difficulty: "hard"
+        },
+    ],
+};
+
+/* ============================================================
+   QUIZ STATE
+   ============================================================ */
+
+let currentQuiz = [];
+let currentIndex = 0;
+let score = 0;
+let startTime = null;
+let wrongTopics = [];
+
+function generateQuiz(){
+    const file = document.getElementById("pdfUpload").files[0];
+    const difficulty = document.getElementById("difficulty").value;
+    let numQuestions = parseInt(document.getElementById("numQuestions").value) || 5;
+    if(numQuestions < 1) numQuestions = 1;
+    if(numQuestions > 50) numQuestions = 50;
+    document.getElementById("numQuestions").value = numQuestions;
+    const setupMsg = document.getElementById("setupMsg");
+    const selectedSubject = getSelectedSubject();
+
+    if(!selectedSubject){
+        setupMsg.style.color = "#d9534f";
+        setupMsg.innerText = "Please select a subject first.";
+        return;
+    }
+
+    if(!file){
+        setupMsg.style.color = "#d9534f";
+        setupMsg.innerText = "Please upload a PDF question paper.";
+        return;
+    }
+
+    // Filter bank by selected difficulty
+    const fullBank = questionBanks[selectedSubject] || [];
+    const filtered = fullBank.filter(function(q){ return q.difficulty === difficulty; });
+
+    if(filtered.length === 0){
+        setupMsg.style.color = "#d9534f";
+        setupMsg.innerText = "No " + difficulty + " questions available for " + selectedSubject + " yet.";
+        return;
+    }
+
+    // Fisher-Yates shuffle (on a copy) to guarantee no repeats
+    const pool = filtered.slice();
+    for(let i = pool.length - 1; i > 0; i--){
+        const j = Math.floor(Math.random() * (i + 1));
+        const tmp = pool[i]; pool[i] = pool[j]; pool[j] = tmp;
+    }
+
+    const actualCount = Math.min(numQuestions, pool.length);
+    currentQuiz = pool.slice(0, actualCount); // unique, non-repeating
+
+    setupMsg.style.color = "#28a745";
+    let msg = "Quiz generated for " + selectedSubject +
+              " (Difficulty: " + difficulty + ") from file: " + file.name;
+    if(actualCount < numQuestions){
+        msg += " — only " + actualCount + " unique " + difficulty +
+               " questions are available, so the quiz has " + actualCount + " questions.";
+    }
+    setupMsg.innerText = msg;
+
+    stats.papers++;
+    activity.push({ title: file.name + " uploaded (" + selectedSubject + ")", time: "just now" });
+    refreshDashboard();
+
+    currentIndex = 0;
+    score = 0;
+    wrongTopics = [];
+    startTime = Date.now();
+
+    document.getElementById("quizSubject").innerText = selectedSubject;
+
+    // Move to a separate quiz window
+    document.getElementById("setupSection").classList.add("hidden");
+    document.getElementById("quizSection").classList.remove("hidden");
+    document.getElementById("resultSection").classList.add("hidden");
+    document.getElementById("weakSection").classList.add("hidden");
+
+    loadQuestion();
+}
+
+function loadQuestion(){
+    const q = currentQuiz[currentIndex];
+
+    document.getElementById("quizProgress").innerText =
+        "Question " + (currentIndex + 1) + " of " + currentQuiz.length;
+
+    document.getElementById("questionText").innerText = q.q;
+
+    const optionsContainer = document.getElementById("optionsContainer");
+    optionsContainer.innerHTML = "";
+
+    q.options.forEach(optText => {
+        const btn = document.createElement("button");
+        btn.className = "option";
+        btn.innerText = optText;
+        btn.addEventListener("click", () => selectOption(btn, optText, q));
+        optionsContainer.appendChild(btn);
+    });
+
+    document.getElementById("nextBtn").innerText =
+        (currentIndex === currentQuiz.length - 1) ? "Finish Quiz" : "Next Question";
+
+    const expBox = document.getElementById("explanationBox");
+    expBox.classList.add("hidden");
+    expBox.innerText = "";
+}
+
+function selectOption(selectedBtn, selectedText, question){
+    const allOptions = document.querySelectorAll("#optionsContainer .option");
+
+    allOptions.forEach(btn => {
+        btn.disabled = true;
+        if(btn.innerText === question.answer){
+            btn.classList.add("correct");
+        }
+    });
+
+    if(selectedText === question.answer){
+        score++;
+    } else {
+        selectedBtn.classList.add("wrong");
+        wrongTopics.push(question.topic);
+    }
+
+    const expBox = document.getElementById("explanationBox");
+    const isCorrect = selectedText === question.answer;
+    expBox.style.borderLeftColor = isCorrect ? "#28a745" : "#dc3545";
+    expBox.style.background = isCorrect ? "#eafaf0" : "#fdecec";
+    expBox.innerHTML = (isCorrect ? "<strong>Correct! </strong>" : "<strong>Incorrect. </strong>") +
+        "Correct answer: <strong>" + question.answer + "</strong><br>" + question.explanation;
+    expBox.classList.remove("hidden");
+}
+
+function nextQuestion(){
+    const allOptions = document.querySelectorAll("#optionsContainer .option");
+    const answered = Array.from(allOptions).some(btn => btn.disabled);
+
+    if(!answered){
+        alert("Please select an option before continuing.");
+        return;
+    }
+
+    if(currentIndex < currentQuiz.length - 1){
+        currentIndex++;
+        loadQuestion();
+    } else {
+        finishQuiz();
+    }
+}
+
+function finishQuiz(){
+    document.getElementById("quizSection").classList.add("hidden");
+
+    const total = currentQuiz.length;
+    const accuracy = Math.round((score / total) * 100);
+    const timeTakenSec = Math.round((Date.now() - startTime) / 1000);
+
+    document.getElementById("score").innerText = score + "/" + total;
+    document.getElementById("accuracy").innerText = accuracy + "%";
+    document.getElementById("time").innerText = timeTakenSec + " sec";
+
+    document.getElementById("resultSection").classList.remove("hidden");
+
+    const weakList = document.getElementById("weakList");
+    weakList.innerHTML = "";
+
+    const uniqueWeak = [...new Set(wrongTopics)];
+
+    if(uniqueWeak.length === 0){
+        const li = document.createElement("li");
+        li.innerText = "Great job! No weak topics detected.";
+        weakList.appendChild(li);
+    } else {
+        uniqueWeak.forEach(topic => {
+            const li = document.createElement("li");
+            li.innerText = topic;
+            weakList.appendChild(li);
+        });
+    }
+
+    document.getElementById("weakSection").classList.remove("hidden");
+
+    stats.attempted++;
+    stats.totalScorePct += accuracy;
+    stats.totalAccuracyPct += accuracy;
+    activity.push({
+        title: document.getElementById("quizSubject").innerText + " Quiz",
+        time: "just now",
+        badge: accuracy + "%"
+    });
+    refreshDashboard();
+    saveUserData();
+
+}
+
+function backToSetup(){
+    document.getElementById("resultSection").classList.add("hidden");
+    document.getElementById("weakSection").classList.add("hidden");
+    document.getElementById("setupSection").classList.remove("hidden");
+    document.getElementById("setupMsg").innerText = "";
+    document.getElementById("pdfUpload").value = "";
+}
+
+function resetQuizUI(){
+    document.getElementById("quizSection").classList.add("hidden");
+    document.getElementById("resultSection").classList.add("hidden");
+    document.getElementById("weakSection").classList.add("hidden");
+    document.getElementById("setupSection").classList.remove("hidden");
+    document.getElementById("setupMsg").innerText = "";
+    document.getElementById("subjectSelect").value = "";
+    document.getElementById("pdfUpload").value = "";
+}
+
+</script>
+
+</body>
+</html>
